@@ -1,7 +1,7 @@
 import { Github, Twitter, Linkedin } from 'lucide-react'
 
 const cols = [
-  { title: 'Product', links: ['Copilot', 'Detection', 'Hardware', 'Network'] },
+  { title: 'Product', links: ['Copilot', 'Perception', 'Network', 'Hardware'] },
   { title: 'Company', links: ['About', 'Careers', 'Blog', 'Contact'] },
   { title: 'Legal', links: ['Privacy', 'Terms', 'Data policy'] },
 ]
@@ -12,16 +12,30 @@ const socials = [
   { icon: Linkedin, label: 'LinkedIn' },
 ]
 
+function Mark() {
+  return (
+    <span
+      className="grid h-8 w-8 place-items-center rounded-xl"
+      style={{ background: 'radial-gradient(circle at 35% 30%, #8F6CF6, #2E2450 70%)' }}
+    >
+      <span className="h-2.5 w-2.5 rounded-full" style={{ background: 'linear-gradient(135deg,#FF3D8F,#4CC2FF)' }} />
+    </span>
+  )
+}
+
 export default function Footer() {
   return (
-    <footer id="footer" className="bg-ink text-on-ink">
-      <div className="container-c section border-t border-line-dark py-16">
+    <footer id="footer" className="border-t border-line bg-porcelain">
+      <div className="container-c section py-16">
         <div className="grid gap-12 md:grid-cols-[1.6fr_1fr_1fr_1fr]">
           <div>
-            <span className="font-display text-2xl tracking-tight">VIGIA</span>
-            <p className="mt-4 max-w-xs leading-relaxed text-muted-ink">
-              Roads that think. An AI copilot in every car, and a road-intelligence
-              network that pays drivers back.
+            <div className="flex items-center gap-2.5">
+              <Mark />
+              <span className="font-display text-xl font-bold tracking-tight">VIGIA</span>
+            </div>
+            <p className="mt-4 max-w-xs leading-relaxed text-muted">
+              Your road, understood. The AI copilot that sees the road, protects you, and pays
+              you back for the intelligence your drive contributes.
             </p>
             <div className="mt-6 flex gap-3">
               {socials.map(({ icon: Icon, label }) => (
@@ -29,7 +43,7 @@ export default function Footer() {
                   key={label}
                   href="#"
                   aria-label={label}
-                  className="grid h-10 w-10 place-items-center rounded-full border border-line-dark text-muted-ink transition-colors hover:border-on-ink/40 hover:text-on-ink"
+                  className="grid h-10 w-10 place-items-center rounded-full border border-line-strong text-muted transition-colors hover:border-blue hover:text-blue"
                 >
                   <Icon className="h-4 w-4" />
                 </a>
@@ -39,11 +53,11 @@ export default function Footer() {
 
           {cols.map((col) => (
             <div key={col.title}>
-              <h4 className="eyebrow mb-5 text-muted-ink">{col.title}</h4>
+              <h4 className="eyebrow mb-5 text-muted-2">{col.title}</h4>
               <ul className="space-y-3">
                 {col.links.map((link) => (
                   <li key={link}>
-                    <a href="#" className="text-on-ink/80 transition-colors hover:text-on-ink">
+                    <a href="#" className="text-sm text-muted transition-colors hover:text-ink">
                       {link}
                     </a>
                   </li>
@@ -53,9 +67,9 @@ export default function Footer() {
           ))}
         </div>
 
-        <div className="mt-14 flex flex-col items-center justify-between gap-3 border-t border-line-dark pt-7 text-sm text-muted-ink sm:flex-row">
+        <div className="mt-14 flex flex-col items-center justify-between gap-3 border-t border-line pt-7 text-sm text-muted sm:flex-row">
           <p>© {new Date().getFullYear()} VIGIA Labs. All rights reserved.</p>
-          <p className="font-display italic">Roads that think.</p>
+          <p>Your road, understood.</p>
         </div>
       </div>
     </footer>

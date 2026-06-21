@@ -3,10 +3,10 @@ import { motion, useInView } from 'framer-motion'
 import { fadeUp, viewportOnce } from '../lib/motion'
 
 const stats = [
-  { value: 12400, suffix: '+', label: 'Active nodes' },
+  { value: 12400, suffix: '+', label: 'Active nodes on the road' },
   { value: 3.2, suffix: 'M', label: 'Kilometres mapped' },
   { value: 480, suffix: 'K+', label: 'Hazards flagged' },
-  { value: 1.1, prefix: '$', suffix: 'M', label: 'Rewards paid out' },
+  { value: 1.1, prefix: '$', suffix: 'M', label: 'Rewards paid to drivers' },
 ]
 
 function Counter({ value, prefix = '', suffix = '' }) {
@@ -35,7 +35,11 @@ function Counter({ value, prefix = '', suffix = '' }) {
 
   const shown = dec ? n.toFixed(1) : Math.round(n).toLocaleString('en-US')
   return (
-    <span ref={ref} className="font-display text-5xl tracking-tight sm:text-6xl">
+    <span
+      ref={ref}
+      className="font-display text-5xl font-bold tracking-tight sm:text-6xl bg-clip-text text-transparent"
+      style={{ backgroundImage: 'linear-gradient(120deg,#FF3D8F,#8F6CF6,#4CC2FF)' }}
+    >
       {prefix}
       {shown}
       {suffix}
@@ -43,19 +47,10 @@ function Counter({ value, prefix = '', suffix = '' }) {
   )
 }
 
-export default function Metrics() {
+export default function Stats() {
   return (
-    <section className="bg-ink text-on-ink">
+    <section className="bg-ember text-on-ember">
       <div className="container-c section py-24">
-        <motion.p
-          variants={fadeUp}
-          initial="hidden"
-          whileInView="show"
-          viewport={viewportOnce}
-          className="eyebrow mb-14 text-center text-accent-soft"
-        >
-          The network, live
-        </motion.p>
         <div className="grid grid-cols-2 gap-y-12 lg:grid-cols-4">
           {stats.map((s) => (
             <motion.div
@@ -67,7 +62,7 @@ export default function Metrics() {
               className="text-center"
             >
               <Counter value={s.value} prefix={s.prefix} suffix={s.suffix} />
-              <p className="mt-3 text-sm text-muted-ink">{s.label}</p>
+              <p className="mx-auto mt-3 max-w-[12rem] text-sm text-muted-ember">{s.label}</p>
             </motion.div>
           ))}
         </div>

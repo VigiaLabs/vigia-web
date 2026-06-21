@@ -1,66 +1,82 @@
 import { motion } from 'framer-motion'
-import Globe from './Globe'
+import { ArrowRight, ShieldCheck, Cpu, Coins } from 'lucide-react'
+import Orb from './Orb'
+
+const ease = [0.22, 1, 0.36, 1]
 
 export default function Hero() {
   return (
-    <section id="top" className="relative flex min-h-screen items-center justify-center overflow-hidden bg-ink">
-      {/* Orbital globe backdrop */}
-      <div className="pointer-events-none absolute inset-0 flex items-center justify-center" aria-hidden>
-        <Globe className="h-[150vmin] w-[150vmin] max-w-none opacity-90" />
-      </div>
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-ink to-transparent" aria-hidden />
-
-      <div className="container-c section relative z-10 text-center">
-        <motion.p
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="eyebrow mb-8 text-on-ink/55"
+    <section id="top" className="relative overflow-hidden aurora">
+      <div className="container-c section relative pt-36 pb-20 text-center sm:pt-44">
+        {/* Orb centerpiece */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.85 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.9, ease }}
+          className="mb-10 flex justify-center"
         >
-          ADAS · DePIN road-intelligence network
-        </motion.p>
+          <Orb size={300} className="sm:scale-110" />
+        </motion.div>
 
-        <h1 className="h-display mx-auto max-w-4xl text-[clamp(3.5rem,11vw,9rem)]">
-          <motion.span
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-            className="block"
+        <motion.div
+          initial={{ opacity: 0, y: 14 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.15 }}
+          className="mb-6 inline-flex items-center gap-2 rounded-full border border-line bg-surface/70 px-3.5 py-1.5 text-xs text-muted backdrop-blur"
+        >
+          <span className="h-1.5 w-1.5 animate-blink rounded-full bg-orb-pink" />
+          The ADAS copilot that pays you back · now in beta
+        </motion.div>
+
+        <motion.h1
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, ease }}
+          className="h-display mx-auto max-w-4xl text-[clamp(2.75rem,7.5vw,5.5rem)]"
+        >
+          Your road,{' '}
+          <span
+            className="bg-clip-text text-transparent"
+            style={{ backgroundImage: 'linear-gradient(100deg,#FF3D8F,#8F6CF6,#4CC2FF)' }}
           >
-            Roads that
-          </motion.span>
-          <motion.span
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: 0.12 }}
-            className="block italic"
-          >
-            think.
-          </motion.span>
-        </h1>
+            understood.
+          </span>
+        </motion.h1>
 
         <motion.p
-          initial={{ opacity: 0, y: 16 }}
+          initial={{ opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.3 }}
-          className="mx-auto mt-8 max-w-xl text-lg leading-relaxed text-muted-ink"
+          transition={{ duration: 0.7, delay: 0.25 }}
+          className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-muted sm:text-xl"
         >
-          Engineering intelligence into every mile you drive — an AI copilot in
-          every car, and a network that pays drivers back.
+          VIGIA is the AI copilot in your car. It sees the road, warns before impact,
+          and turns every mile into rewards on a decentralized road-intelligence network.
         </motion.p>
 
         <motion.div
-          initial={{ opacity: 0, y: 16 }}
+          initial={{ opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.42 }}
-          className="mt-10 flex flex-wrap items-center justify-center gap-3"
+          transition={{ duration: 0.7, delay: 0.35 }}
+          className="mt-9 flex flex-wrap items-center justify-center gap-3"
         >
-          <a href="#cta" className="pill bg-accent text-on-ink hover:bg-accent/90">
-            Reserve your node
+          <a href="#cta" className="pill-primary">
+            Get started
+            <ArrowRight className="h-4 w-4" />
           </a>
-          <a href="#copilot" className="pill border border-line-dark text-on-ink hover:bg-ink-2">
+          <a href="#copilot" className="pill-ghost">
             See how it works
           </a>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.7, delay: 0.5 }}
+          className="mt-10 flex flex-wrap items-center justify-center gap-x-7 gap-y-3 text-sm text-muted"
+        >
+          <span className="inline-flex items-center gap-2"><ShieldCheck className="h-4 w-4 text-blue" /> Edge-private by design</span>
+          <span className="inline-flex items-center gap-2"><Cpu className="h-4 w-4 text-violet" /> Runs on-device</span>
+          <span className="inline-flex items-center gap-2"><Coins className="h-4 w-4 text-gold" /> Signed, verifiable rewards</span>
         </motion.div>
       </div>
     </section>

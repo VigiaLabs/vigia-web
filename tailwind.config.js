@@ -4,42 +4,64 @@ export default {
   theme: {
     extend: {
       colors: {
-        ink: '#0A0A0B',
-        'ink-2': '#141416',
-        'ink-3': '#1C1C1F',
-        paper: '#F2F1ED',
-        'paper-2': '#E7E5DE',
-        accent: '#EA4E32',
-        'accent-soft': '#F6A593',
-        'on-ink': '#F7F6F3',
-        'muted-ink': '#9C9C97',
-        'on-paper': '#0A0A0B',
-        'muted-paper': '#6B6B64',
-        'line-dark': 'rgba(255,255,255,0.10)',
-        'line-light': 'rgba(10,10,11,0.12)',
+        // Warm Horizon — Porcelain (light)
+        porcelain: '#F6F3EC',
+        cream: '#FBF9F4',
+        surface: '#FFFFFF',
+        peach: '#FAE6CF',
+        // Ember (dark)
+        ember: '#141210',
+        'ember-2': '#1D1A17',
+        'ember-3': '#282420',
+        // Ink / text
+        ink: '#1B1A17',
+        muted: '#565049',
+        'muted-2': '#8A8378',
+        'on-ember': '#EFE9E1',
+        'muted-ember': '#B5ACA0',
+        // Lines
+        line: '#E2DBCF',
+        'line-strong': '#C7BFB1',
+        'line-ember': 'rgba(255,255,255,0.10)',
+        // Brand
+        blue: '#3A5BD9',
+        'blue-ink': '#15336E',
+        violet: '#6A57C7',
+        // Orb rims
+        'orb-pink': '#FF3D8F',
+        'orb-violet': '#8F6CF6',
+        'orb-blue': '#4CC2FF',
+        'orb-core': '#2E2450',
+        'orb-edge': '#0A0716',
+        // Token + states
+        gold: '#D97706',
+        'gold-soft': '#FBBF24',
+        success: '#1E8E4E',
       },
       fontFamily: {
-        display: ['Fraunces', 'Georgia', 'serif'],
+        display: ['"Bricolage Grotesque"', 'system-ui', 'sans-serif'],
         sans: ['Inter', 'system-ui', 'sans-serif'],
-        mono: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'monospace'],
+        mono: ['"JetBrains Mono"', 'ui-monospace', 'monospace'],
       },
       maxWidth: {
-        content: '1180px',
+        content: '1200px',
       },
       letterSpacing: {
-        tightest: '-0.04em',
+        tightest: '-0.03em',
+      },
+      borderRadius: {
+        '4xl': '2rem',
       },
       keyframes: {
+        marquee: { from: { transform: 'translateX(0)' }, to: { transform: 'translateX(-50%)' } },
         spinSlow: { to: { transform: 'rotate(360deg)' } },
-        orbit: {
-          from: { transform: 'rotate(0deg)' },
-          to: { transform: 'rotate(360deg)' },
-        },
-        blink: { '0%,100%': { opacity: '1' }, '50%': { opacity: '0.25' } },
+        floaty: { '0%,100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(-12px)' } },
+        blink: { '0%,100%': { opacity: '1' }, '50%': { opacity: '0.3' } },
       },
       animation: {
-        'spin-slow': 'spinSlow 90s linear infinite',
-        orbit: 'orbit 24s linear infinite',
+        marquee: 'marquee 32s linear infinite',
+        'spin-slow': 'spinSlow 14s linear infinite',
+        floaty: 'floaty 7s ease-in-out infinite',
         blink: 'blink 2s ease-in-out infinite',
       },
     },
