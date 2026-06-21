@@ -66,25 +66,17 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* ── Aurora mist strip — replaces Intercom's editorial image row ── */}
+      {/* ── ShaderGradient strip ── */}
       <div style={{
         position: 'relative',
-        height: 320,
+        height: 360,
         width: '100%',
         overflow: 'hidden',
-        borderTop: '1px solid #E7E7E7',
-        borderBottom: '1px solid #E7E7E7',
-        background: '#fff',
+        marginTop: -64,
       }}>
-        <Suspense fallback={<div style={{ width: '100%', height: '100%', background: '#f5f5f5' }} />}>
+        <Suspense fallback={<div style={{ width: '100%', height: '100%', background: '#09090B' }} />}>
           <ShaderWave />
         </Suspense>
-        {/* Edge fade-out masks so it bleeds softly */}
-        <div style={{
-          position: 'absolute', inset: 0,
-          background: 'linear-gradient(90deg, #fff 0%, transparent 8%, transparent 92%, #fff 100%)',
-          pointerEvents: 'none',
-        }} />
       </div>
 
       {/* ── Feature tabs ── */}

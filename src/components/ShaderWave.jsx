@@ -16,9 +16,9 @@ export default function ShaderWave() {
         uFrequency={5.0}
         uAmplitude={2.8}
         positionX={0}
-        positionY={0.9}
+        positionY={1.6}
         positionZ={0}
-        rotationX={50}
+        rotationX={45}
         rotationY={0}
         rotationZ={-60}
         color1="#326BFF"
