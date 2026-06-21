@@ -4,40 +4,43 @@ export default {
   theme: {
     extend: {
       colors: {
-        bg: '#060809',
-        surface: '#0D1117',
-        'surface-2': '#141A21',
-        primary: '#22D3EE',
-        earn: '#34E5B0',
-        alert: '#F5A623',
-        text: '#E6EDF3',
-        muted: '#8B98A5',
-        hairline: '#1C2530',
+        ink: '#0A0A0B',
+        'ink-2': '#141416',
+        'ink-3': '#1C1C1F',
+        paper: '#F2F1ED',
+        'paper-2': '#E7E5DE',
+        accent: '#EA4E32',
+        'accent-soft': '#F6A593',
+        'on-ink': '#F7F6F3',
+        'muted-ink': '#9C9C97',
+        'on-paper': '#0A0A0B',
+        'muted-paper': '#6B6B64',
+        'line-dark': 'rgba(255,255,255,0.10)',
+        'line-light': 'rgba(10,10,11,0.12)',
       },
       fontFamily: {
-        display: ['Orbitron', 'sans-serif'],
-        body: ['"Exo 2"', 'sans-serif'],
+        display: ['Fraunces', 'Georgia', 'serif'],
+        sans: ['Inter', 'system-ui', 'sans-serif'],
+        mono: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'monospace'],
       },
       maxWidth: {
-        content: '1200px',
+        content: '1180px',
       },
-      boxShadow: {
-        glow: '0 0 40px -10px rgba(34, 211, 238, 0.45)',
-        'glow-earn': '0 0 40px -10px rgba(52, 229, 176, 0.45)',
+      letterSpacing: {
+        tightest: '-0.04em',
       },
       keyframes: {
-        radar: {
-          '0%': { transform: 'rotate(0deg)' },
-          '100%': { transform: 'rotate(360deg)' },
+        spinSlow: { to: { transform: 'rotate(360deg)' } },
+        orbit: {
+          from: { transform: 'rotate(0deg)' },
+          to: { transform: 'rotate(360deg)' },
         },
-        float: {
-          '0%, 100%': { transform: 'translateY(0)' },
-          '50%': { transform: 'translateY(-10px)' },
-        },
+        blink: { '0%,100%': { opacity: '1' }, '50%': { opacity: '0.25' } },
       },
       animation: {
-        radar: 'radar 6s linear infinite',
-        float: 'float 6s ease-in-out infinite',
+        'spin-slow': 'spinSlow 90s linear infinite',
+        orbit: 'orbit 24s linear infinite',
+        blink: 'blink 2s ease-in-out infinite',
       },
     },
   },

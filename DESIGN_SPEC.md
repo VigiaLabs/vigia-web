@@ -2,76 +2,86 @@
 
 > Marketing site for **VIGIA**: an ADAS DePIN edge-node platform. An AI dashcam +
 > driver copilot that turns every drive into mapped road intelligence — and pays
-> drivers in rewards for the data their node contributes to the network.
+> drivers in rewards for the data their node contributes.
+>
+> **Design language:** editorial, high-end SaaS — modeled on the restraint and
+> rhythm of arianetworks.com. Serif display, alternating dark/light sections,
+> one disciplined accent, real product UI shown in context.
 
 ---
 
-## 1. Brand Positioning
+## 1. Positioning
 
 | Axis | Decision |
 |------|----------|
 | Category | ADAS DePIN (Decentralized Physical Infrastructure) |
-| One-liner | *"Your car becomes a node. Your drive becomes the map. Your data earns."* |
-| Tone | Premium, technical, confident — automotive-grade, not crypto-hype |
-| Reference feel | arianetworks.com — deep dark canvas, restrained motion, engineered precision |
+| Hero line | *"Roads that think."* |
+| Tone | Engineered, confident, editorial — automotive-grade, not crypto-hype |
+| Reference | arianetworks.com — deep black canvas, serif headlines, product mockups, single warm accent |
 
 ## 2. Visual Language
 
-### Palette (dark-first)
+### Palette — alternating dark / warm-paper
 | Token | Hex | Use |
 |-------|-----|-----|
-| `--bg` | `#060809` | Page canvas (near-black) |
-| `--surface` | `#0D1117` | Cards, elevated panels |
-| `--surface-2` | `#141A21` | Nested / hover surfaces |
-| `--primary` | `#22D3EE` | Primary accent (sensor cyan) |
-| `--earn` | `#34E5B0` | Rewards / earnings highlight (mint) |
-| `--alert` | `#F5A623` | Hazard / ADAS alert accent (amber) |
-| `--text` | `#E6EDF3` | Primary text |
-| `--muted` | `#8B98A5` | Secondary text |
-| `--border` | `#1C2530` | Hairline borders |
+| `ink` | `#0A0A0B` | Dark sections / canvas |
+| `ink-2` | `#141416` | Elevated surfaces on dark |
+| `ink-3` | `#1C1C1F` | Tracks / nested fills |
+| `paper` | `#F2F1ED` | Light sections (warm off-white) |
+| `paper-2` | `#E7E5DE` | Light nested surfaces |
+| `accent` | `#EA4E32` | THE accent — used sparingly (one ring, key labels, active threat, CTAs) |
+| `accent-soft` | `#F6A593` | Accent on dark backgrounds |
+| `on-ink` | `#F7F6F3` | Text on dark |
+| `muted-ink` | `#9C9C97` | Secondary on dark |
+| `on-paper` | `#0A0A0B` | Text on light |
+| `muted-paper`| `#6B6B64` | Secondary on light |
 
-Gradient signature: `linear-gradient(135deg, #22D3EE, #34E5B0)` for CTAs and key glyphs.
-Glow: radial cyan bloom behind hero + section dividers, low opacity (≤0.18).
+No gradients on text or surfaces (one faint radial vignette behind the globe only).
+The accent is rationed — if everything is red, nothing is.
 
 ### Typography
-- **Display / headings:** `Orbitron` (400–700) — geometric, web3/engineered.
-- **Body / UI:** `Exo 2` (300–600) — humanist-tech, highly readable.
-- Scale: `12 · 14 · 16 · 18 · 24 · 32 · 48 · 72`. Body base 16px, line-height 1.6.
+- **Display:** `Fraunces` (high-contrast serif, optical sizing) — huge headlines,
+  italic used for the emphasized word (`think.`, `every mile.`).
+- **Body / UI:** `Inter` — clean neo-grotesque.
+- **Mono:** system mono — for technical/status labels (`ROUTE LOADED`, `TTC 2.3s`).
+- Headline scale via `clamp()`; tight tracking (`-0.04em`), line-height ~0.98.
 
-### Effects
-- Glassmorphic sticky nav: `backdrop-blur(16px)` over `rgba(6,8,9,0.6)`.
-- Hairline borders `1px var(--border)`; cards lift on hover (`translateY(-4px)` + cyan ring glow).
-- Animated dot-grid + scanning radar line as the hero backdrop motif.
+### Components
+- **Pills** for all CTAs: white-on-dark, black-on-light, accent for primary.
+- **Product mockups** rendered as dark rounded panels (`rounded-2xl`, hairline
+  border, deep shadow) floating in light sections — the way Aria shows its UI.
 
-## 3. Motion (framer-motion)
-- Scroll reveals: `opacity 0→1`, `y 24→0`, `ease-out`, 0.5s, staggered 60ms.
-- Hero headline: word-by-word stagger on load.
-- Counters: animate stats on first viewport entry.
-- Respect `prefers-reduced-motion` — disable transforms, keep opacity only.
-- Durations 150–400ms; transform/opacity only (no layout animation).
+## 3. Hero motif — orbital globe
+Pure-SVG wireframe sphere: meridian + latitude ellipses, dots riding the rings,
+one accent meridian + a few accent nodes, a faint radial vignette, and a single
+travelling node on an outer orbit. The globe drifts slowly (90s); the outer
+orbit counter-rotates (24s). Both pause under `prefers-reduced-motion`.
 
-## 4. Page Structure
-1. **Nav** — logo, links (Platform · Earn · Hardware · Docs), `Launch App` CTA.
-2. **Hero** — headline, subcopy, dual CTA, live "network" stat ticker, edge-node visual.
-3. **Trust bar** — partner / chipset logos (OpenVINO, ONNX Runtime, Raspberry Pi, AWS IoT).
-4. **How it works** — 3 steps: *Drive → Detect → Earn*.
-5. **Features bento** — 6 cards: edge AI, collision warning, DePIN rewards, privacy, voice copilot, fleet API.
-6. **Metrics band** — animated stats (nodes, km mapped, hazards flagged, paid out).
-7. **DePIN / Earnings** — how rewards accrue, tokenomics teaser, earnings calculator hint.
-8. **Hardware** — the edge node spec (Pi + sensor stack, signed telemetry).
-9. **Use cases** — fleets, insurers, municipalities, individual drivers.
-10. **CTA** — final conversion band.
-11. **Footer** — sitemap, socials, legal.
+## 4. Motion (framer-motion)
+- Scroll reveals: `opacity 0→1`, `y 24–28→0`, ease `[0.22,1,0.36,1]`, ~0.6s.
+- Hero headline: two-line staggered rise on load.
+- Metric counters animate on first viewport entry (cubic ease-out).
+- Earnings bars grow on scroll-in.
+- transform/opacity only; everything degrades to opacity-only under reduced-motion.
 
-## 5. Tech Stack
-- React 18 + Vite
-- Tailwind CSS (custom theme tokens above)
-- framer-motion (scroll + entrance animation)
-- lucide-react (icon system — single family, 1.5px stroke)
+## 5. Page structure
+1. **Nav** — wordmark + mark, links, white `Contact` pill; transparent over hero,
+   ink glass on scroll.
+2. **Hero (dark)** — orbital globe, `Roads that think.`, subtitle, dual pill CTA.
+3. **Copilot (light)** — text + voice-copilot conversation mockup.
+4. **Perception (dark, reversed)** — text + dashcam detection-box mockup.
+5. **Network (light)** — text + rewards/earnings mockup.
+6. **Metrics (dark)** — serif animated counters.
+7. **Hardware (light)** — edge-node spec grid (hairline-divided cells).
+8. **CTA (dark)** — big serif close.
+9. **Footer (dark)**.
 
-## 6. Accessibility Guardrails
-- Text contrast ≥ 4.5:1 on all surfaces (verified against `--bg`/`--surface`).
-- Visible focus rings (cyan, 3px) on every interactive element.
+## 6. Tech Stack
+React 18 + Vite · Tailwind (tokens above) · framer-motion · lucide-react.
+
+## 7. Accessibility
+- Contrast ≥ 4.5:1 verified on both ink and paper.
+- Visible accent focus rings on every interactive element.
 - `prefers-reduced-motion` honored globally.
-- Semantic landmarks (`header`/`main`/`section`/`footer`), one `h1`.
-- All CTAs ≥ 44px tap height; icon-only controls carry `aria-label`.
+- Semantic landmarks, single `h1`, `aria-label` on icon-only controls, SVG `role="img"`.
+- All CTAs ≥ 44px tap height.

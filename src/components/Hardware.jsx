@@ -1,6 +1,5 @@
 import { motion } from 'framer-motion'
 import { Cpu, Camera, Satellite, KeyRound, Gauge, Wifi } from 'lucide-react'
-import { SectionHeading } from './Section'
 import { fadeUp, stagger, viewportOnce } from '../lib/motion'
 
 const specs = [
@@ -8,40 +7,41 @@ const specs = [
   { icon: Camera, label: 'Vision', value: 'Wide-FOV road camera + depth' },
   { icon: Satellite, label: 'Positioning', value: 'GNSS + IMU dead-reckoning' },
   { icon: KeyRound, label: 'Security', value: 'Hardware-signed telemetry' },
-  { icon: Gauge, label: 'Latency', value: 'Sub-100ms on-device detection' },
+  { icon: Gauge, label: 'Latency', value: 'Sub-100 ms on-device' },
   { icon: Wifi, label: 'Uplink', value: 'BLE to phone · LTE failover' },
 ]
 
 export default function Hardware() {
   return (
-    <section id="hardware" className="relative overflow-hidden py-24">
-      <div className="pointer-events-none absolute inset-0 dot-grid opacity-20" aria-hidden />
-      <div className="relative mx-auto max-w-content px-5">
-        <SectionHeading
-          eyebrow="The edge node"
-          title="Automotive-grade hardware, decentralized economics"
-          subtitle="A purpose-built node that perceives the road, protects the driver, and signs every contribution."
-        />
+    <section id="hardware" className="bg-paper text-on-paper">
+      <div className="container-c section py-24 sm:py-32">
         <motion.div
-          variants={stagger(0.07)}
+          variants={fadeUp}
           initial="hidden"
           whileInView="show"
           viewport={viewportOnce}
-          className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3"
+          className="mb-16 max-w-2xl"
+        >
+          <p className="eyebrow mb-5 text-accent">The edge node</p>
+          <h2 className="h-display text-[clamp(2.25rem,5vw,3.75rem)]">It all starts at the node.</h2>
+          <p className="mt-6 max-w-md text-lg leading-relaxed text-muted-paper">
+            A purpose-built device that perceives the road, protects the driver, and
+            signs every contribution at the source.
+          </p>
+        </motion.div>
+
+        <motion.div
+          variants={stagger(0.06)}
+          initial="hidden"
+          whileInView="show"
+          viewport={viewportOnce}
+          className="grid gap-px overflow-hidden rounded-2xl border border-line-light bg-line-light sm:grid-cols-2 lg:grid-cols-3"
         >
           {specs.map(({ icon: Icon, label, value }) => (
-            <motion.div
-              key={label}
-              variants={fadeUp}
-              className="flex items-start gap-4 rounded-2xl border border-hairline bg-surface p-6 transition-colors hover:border-primary/40"
-            >
-              <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-primary/10 text-primary">
-                <Icon className="h-5 w-5" strokeWidth={1.5} />
-              </span>
-              <div>
-                <p className="text-xs uppercase tracking-wider text-muted">{label}</p>
-                <p className="mt-1 font-medium text-text">{value}</p>
-              </div>
+            <motion.div key={label} variants={fadeUp} className="bg-paper p-7">
+              <Icon className="mb-5 h-6 w-6 text-accent" strokeWidth={1.5} />
+              <p className="eyebrow text-muted-paper">{label}</p>
+              <p className="mt-2 text-lg">{value}</p>
             </motion.div>
           ))}
         </motion.div>

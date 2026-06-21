@@ -1,7 +1,7 @@
-import { Radar, Github, Twitter, Linkedin } from 'lucide-react'
+import { Github, Twitter, Linkedin } from 'lucide-react'
 
 const cols = [
-  { title: 'Platform', links: ['Features', 'Hardware', 'Earn', 'Docs'] },
+  { title: 'Product', links: ['Copilot', 'Detection', 'Hardware', 'Network'] },
   { title: 'Company', links: ['About', 'Careers', 'Blog', 'Contact'] },
   { title: 'Legal', links: ['Privacy', 'Terms', 'Data policy'] },
 ]
@@ -14,27 +14,22 @@ const socials = [
 
 export default function Footer() {
   return (
-    <footer className="border-t border-hairline">
-      <div className="mx-auto max-w-content px-5 py-14">
-        <div className="grid gap-10 md:grid-cols-[1.5fr_1fr_1fr_1fr]">
+    <footer id="footer" className="bg-ink text-on-ink">
+      <div className="container-c section border-t border-line-dark py-16">
+        <div className="grid gap-12 md:grid-cols-[1.6fr_1fr_1fr_1fr]">
           <div>
-            <div className="flex items-center gap-2.5">
-              <span className="grid h-9 w-9 place-items-center rounded-lg bg-gradient-to-br from-primary to-earn text-bg">
-                <Radar className="h-5 w-5" strokeWidth={2} />
-              </span>
-              <span className="font-display text-lg font-bold tracking-widest">VIGIA</span>
-            </div>
-            <p className="mt-4 max-w-xs text-sm leading-relaxed text-muted">
-              The ADAS DePIN network. Drive safer, map the world, earn for the road
-              intelligence only your node can capture.
+            <span className="font-display text-2xl tracking-tight">VIGIA</span>
+            <p className="mt-4 max-w-xs leading-relaxed text-muted-ink">
+              Roads that think. An AI copilot in every car, and a road-intelligence
+              network that pays drivers back.
             </p>
-            <div className="mt-5 flex gap-3">
+            <div className="mt-6 flex gap-3">
               {socials.map(({ icon: Icon, label }) => (
                 <a
                   key={label}
                   href="#"
                   aria-label={label}
-                  className="grid h-9 w-9 place-items-center rounded-lg border border-hairline text-muted transition-colors hover:border-primary/40 hover:text-text"
+                  className="grid h-10 w-10 place-items-center rounded-full border border-line-dark text-muted-ink transition-colors hover:border-on-ink/40 hover:text-on-ink"
                 >
                   <Icon className="h-4 w-4" />
                 </a>
@@ -44,11 +39,11 @@ export default function Footer() {
 
           {cols.map((col) => (
             <div key={col.title}>
-              <h4 className="mb-4 text-sm font-semibold text-text">{col.title}</h4>
+              <h4 className="eyebrow mb-5 text-muted-ink">{col.title}</h4>
               <ul className="space-y-3">
                 {col.links.map((link) => (
                   <li key={link}>
-                    <a href="#" className="text-sm text-muted transition-colors hover:text-text">
+                    <a href="#" className="text-on-ink/80 transition-colors hover:text-on-ink">
                       {link}
                     </a>
                   </li>
@@ -58,9 +53,9 @@ export default function Footer() {
           ))}
         </div>
 
-        <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-hairline pt-6 text-sm text-muted sm:flex-row">
+        <div className="mt-14 flex flex-col items-center justify-between gap-3 border-t border-line-dark pt-7 text-sm text-muted-ink sm:flex-row">
           <p>© {new Date().getFullYear()} VIGIA Labs. All rights reserved.</p>
-          <p>Drive. Detect. Earn.</p>
+          <p className="font-display italic">Roads that think.</p>
         </div>
       </div>
     </footer>
