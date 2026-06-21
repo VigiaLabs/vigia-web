@@ -2,21 +2,17 @@ import { useEffect, useState } from 'react'
 import { Menu, X } from 'lucide-react'
 
 const links = [
-  { label: 'Copilot', href: '#copilot' },
-  { label: 'Perception', href: '#perception' },
-  { label: 'Network', href: '#network' },
+  { label: 'How it works', href: '#how' },
   { label: 'Hardware', href: '#hardware' },
+  { label: 'Earn', href: '#earn' },
+  { label: 'Pricing', href: '#pricing' },
 ]
 
 function Mark() {
   return (
     <span
       className="grid h-8 w-8 place-items-center rounded-xl"
-      style={{
-        background:
-          'radial-gradient(circle at 35% 30%, #8F6CF6, #2E2450 70%)',
-        boxShadow: '0 0 0 1px rgba(143,108,246,0.4)',
-      }}
+      style={{ background: 'radial-gradient(circle at 35% 30%, #8F6CF6, #2E2450 70%)' }}
     >
       <span className="h-2.5 w-2.5 rounded-full" style={{ background: 'linear-gradient(135deg,#FF3D8F,#4CC2FF)' }} />
     </span>
@@ -37,7 +33,7 @@ export default function Nav() {
   return (
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-colors duration-300 ${
-        scrolled ? 'border-b border-line bg-porcelain/80 backdrop-blur-xl' : 'border-b border-transparent'
+        scrolled ? 'border-b border-line bg-bg/80 backdrop-blur-xl' : 'border-b border-transparent'
       }`}
     >
       <nav className="container-c section flex h-[72px] items-center justify-between">
@@ -55,16 +51,16 @@ export default function Nav() {
         </div>
 
         <div className="hidden items-center gap-2.5 md:flex">
-          <a href="#" className="text-sm font-medium text-ink transition-colors hover:text-blue">
+          <a href="#" className="text-sm font-medium text-ink transition-colors hover:text-cyan">
             Sign in
           </a>
           <a href="#cta" className="pill-primary !py-2.5 !text-sm">
-            Get started
+            Get early access
           </a>
         </div>
 
         <button
-          className="grid h-10 w-10 place-items-center rounded-full border border-line-strong md:hidden"
+          className="grid h-10 w-10 place-items-center rounded-full border border-line-2 md:hidden"
           aria-label={open ? 'Close menu' : 'Open menu'}
           onClick={() => setOpen((o) => !o)}
         >
@@ -73,7 +69,7 @@ export default function Nav() {
       </nav>
 
       {open && (
-        <div className="border-t border-line bg-porcelain/95 px-5 py-5 backdrop-blur-xl md:hidden">
+        <div className="border-t border-line bg-bg/95 px-5 py-5 backdrop-blur-xl md:hidden">
           <div className="flex flex-col gap-4">
             {links.map((l) => (
               <a key={l.href} href={l.href} onClick={() => setOpen(false)} className="text-sm text-muted">
@@ -81,7 +77,7 @@ export default function Nav() {
               </a>
             ))}
             <a href="#cta" onClick={() => setOpen(false)} className="pill-primary">
-              Get started
+              Get early access
             </a>
           </div>
         </div>

@@ -4,54 +4,72 @@
 
 @layer base {
   :root {
-    color-scheme: light;
+    color-scheme: dark;
   }
 
   html {
-    scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
   }
 
+  /* Lenis smooth scroll */
+  html.lenis,
+  html.lenis body {
+    height: auto;
+  }
+  .lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+  }
+  .lenis.lenis-stopped {
+    overflow: hidden;
+  }
+
   body {
-    @apply bg-porcelain text-ink font-sans;
+    @apply bg-bg text-ink font-sans;
   }
 
   ::selection {
-    @apply bg-violet/25 text-ink;
+    @apply bg-cyan/30 text-ink;
   }
 
   *:focus-visible {
-    @apply outline-none ring-2 ring-blue ring-offset-2 ring-offset-porcelain rounded-lg;
+    @apply outline-none ring-2 ring-cyan ring-offset-2 ring-offset-bg rounded-lg;
   }
 }
 
 @layer components {
   .h-display {
-    @apply font-display font-semibold tracking-tightest leading-[1.02];
+    @apply font-display font-medium tracking-tightest leading-[1.0];
   }
 
   .eyebrow {
-    @apply font-mono text-[11px] uppercase tracking-[0.18em];
+    @apply font-mono text-[11px] uppercase tracking-[0.2em];
   }
 
-  /* Pills — pre-styled CTA variants */
   .pill {
     @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-[15px] font-medium transition-all duration-200;
   }
   .pill-primary {
-    @apply pill bg-blue text-white hover:bg-blue/90 hover:shadow-lg hover:shadow-blue/25;
+    @apply pill text-bg;
+    background-image: linear-gradient(100deg, #ff3d8f, #8f6cf6, #4cc2ff);
+    background-size: 160% 100%;
+    background-position: 0% 0%;
+  }
+  .pill-primary:hover {
+    background-position: 100% 0%;
+    box-shadow: 0 10px 30px -8px rgba(76, 194, 255, 0.45);
   }
   .pill-ghost {
-    @apply pill border border-line-strong bg-transparent text-ink hover:bg-surface;
-  }
-  .pill-ember {
-    @apply pill bg-on-ember text-ember hover:bg-white;
+    @apply pill border border-line-2 text-ink hover:bg-surface;
   }
 
-  /* Liquid-glass card — app register: near-opaque, soft shadow, no harsh hairline */
-  .glass-card {
-    @apply rounded-3xl border border-line bg-surface shadow-[0_8px_30px_-12px_rgba(27,26,23,0.12)];
+  .card {
+    @apply rounded-3xl border border-line bg-surface;
+  }
+
+  .text-grad {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(100deg, #ff3d8f, #8f6cf6, #4cc2ff);
   }
 }
 
@@ -62,12 +80,11 @@
   .container-c {
     @apply mx-auto max-w-content;
   }
-  /* Aurora wash — VIGIA atmosphere */
   .aurora {
     background-image:
-      radial-gradient(40% 50% at 18% 12%, rgba(255, 61, 143, 0.10), transparent 70%),
-      radial-gradient(45% 55% at 82% 18%, rgba(76, 194, 255, 0.12), transparent 70%),
-      radial-gradient(50% 60% at 50% 100%, rgba(143, 108, 246, 0.12), transparent 70%);
+      radial-gradient(38% 50% at 15% 8%, rgba(255, 61, 143, 0.14), transparent 70%),
+      radial-gradient(44% 55% at 85% 14%, rgba(76, 194, 255, 0.16), transparent 70%),
+      radial-gradient(50% 60% at 50% 100%, rgba(143, 108, 246, 0.16), transparent 70%);
   }
 }
 
@@ -78,6 +95,8 @@
     animation-duration: 0.001ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.001ms !important;
+  }
+  html {
     scroll-behavior: auto !important;
   }
 }

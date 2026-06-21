@@ -17,10 +17,7 @@ function Counter({ value, prefix = '', suffix = '' }) {
 
   useEffect(() => {
     if (!inView) return
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      setN(value)
-      return
-    }
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return setN(value)
     let raf
     const start = performance.now()
     const tick = (t) => {
@@ -35,34 +32,21 @@ function Counter({ value, prefix = '', suffix = '' }) {
 
   const shown = dec ? n.toFixed(1) : Math.round(n).toLocaleString('en-US')
   return (
-    <span
-      ref={ref}
-      className="font-display text-5xl font-bold tracking-tight sm:text-6xl bg-clip-text text-transparent"
-      style={{ backgroundImage: 'linear-gradient(120deg,#FF3D8F,#8F6CF6,#4CC2FF)' }}
-    >
-      {prefix}
-      {shown}
-      {suffix}
+    <span ref={ref} className="font-display text-5xl font-bold tracking-tight text-grad sm:text-6xl">
+      {prefix}{shown}{suffix}
     </span>
   )
 }
 
 export default function Stats() {
   return (
-    <section className="bg-ember text-on-ember">
-      <div className="container-c section py-24">
+    <section className="border-y border-line bg-bg-2">
+      <div className="container-c section py-20">
         <div className="grid grid-cols-2 gap-y-12 lg:grid-cols-4">
           {stats.map((s) => (
-            <motion.div
-              key={s.label}
-              variants={fadeUp}
-              initial="hidden"
-              whileInView="show"
-              viewport={viewportOnce}
-              className="text-center"
-            >
+            <motion.div key={s.label} variants={fadeUp} initial="hidden" whileInView="show" viewport={viewportOnce} className="text-center">
               <Counter value={s.value} prefix={s.prefix} suffix={s.suffix} />
-              <p className="mx-auto mt-3 max-w-[12rem] text-sm text-muted-ember">{s.label}</p>
+              <p className="mx-auto mt-3 max-w-[12rem] text-sm text-muted">{s.label}</p>
             </motion.div>
           ))}
         </div>
