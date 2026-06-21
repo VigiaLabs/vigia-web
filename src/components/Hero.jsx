@@ -1,4 +1,5 @@
-import AuroraMist from './AuroraMist';
+import { Suspense, lazy } from 'react';
+const ShaderWave = lazy(() => import('./ShaderWave'));
 
 /* Corner accent squares — Intercom's signature decorative detail */
 function BlueSquare({ style }) {
@@ -75,7 +76,9 @@ export default function Hero() {
         borderBottom: '1px solid #E7E7E7',
         background: '#fff',
       }}>
-        <AuroraMist />
+        <Suspense fallback={<div style={{ width: '100%', height: '100%', background: '#f5f5f5' }} />}>
+          <ShaderWave />
+        </Suspense>
         {/* Edge fade-out masks so it bleeds softly */}
         <div style={{
           position: 'absolute', inset: 0,
