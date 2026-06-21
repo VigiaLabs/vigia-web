@@ -68,6 +68,17 @@
   .card {
     @apply rounded-3xl border border-line bg-surface;
   }
+
+  /* Square-corner buttons — Intercom style */
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg px-5 py-2.5 text-[15px] font-semibold transition-all duration-200;
+  }
+  .btn-primary {
+    @apply btn bg-ink text-bg hover:bg-white;
+  }
+  .btn-outline {
+    @apply btn border border-line-2 text-ink hover:bg-surface;
+  }
 }
 
 @layer utilities {

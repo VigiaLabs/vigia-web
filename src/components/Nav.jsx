@@ -1,12 +1,11 @@
 import { useEffect, useState } from 'react'
-import { Menu, X, ChevronDown } from 'lucide-react'
+import { Menu, X, ArrowUpRight } from 'lucide-react'
 import VigiaMark from './VigiaMark'
 
-const links = [
-  { label: 'How it works', href: '#how' },
-  { label: 'Hardware', href: '#hardware' },
-  { label: 'Earn', href: '#earn' },
-  { label: 'Pricing', href: '#pricing' },
+const rightLinks = [
+  { label: 'Log in', href: '#' },
+  { label: 'Contact sales', href: '#' },
+  { label: 'View demo', href: '#how' },
 ]
 
 export default function Nav() {
@@ -27,31 +26,33 @@ export default function Nav() {
       }`}
     >
       <nav className="container-c section flex h-[68px] items-center justify-between">
-        {/* Logo */}
-        <a href="#top" className="flex items-center gap-2.5 text-ink" aria-label="VIGIA home">
-          <VigiaMark size={28} />
-          <span className="font-display text-[18px] font-bold tracking-tight">VIGIA</span>
-        </a>
-
-        {/* Center links */}
-        <div className="hidden items-center gap-7 md:flex">
-          {links.map((l) => (
-            <a key={l.href} href={l.href} className="text-sm text-muted transition-colors hover:text-ink">
-              {l.label}
-            </a>
-          ))}
+        {/* Logo + sub-product link */}
+        <div className="flex items-center gap-5">
+          <a href="#top" className="flex items-center gap-2.5 text-ink" aria-label="VIGIA home">
+            <VigiaMark size={28} />
+            <span className="font-display text-[18px] font-bold tracking-tight">VIGIA</span>
+          </a>
+          <a
+            href="#hardware"
+            className="hidden items-center gap-0.5 text-sm font-medium text-muted transition-colors hover:text-ink sm:flex"
+          >
+            Edge Node
+            <ArrowUpRight className="h-3.5 w-3.5" />
+          </a>
         </div>
 
         {/* Right actions */}
-        <div className="hidden items-center gap-1 md:flex">
-          <a href="#" className="rounded-full px-4 py-2 text-sm text-muted transition-colors hover:bg-surface hover:text-ink">
-            Sign in
-          </a>
+        <div className="hidden items-center gap-5 md:flex">
+          {rightLinks.map((l) => (
+            <a key={l.label} href={l.href} className="text-sm text-muted transition-colors hover:text-ink">
+              {l.label}
+            </a>
+          ))}
           <a
             href="#cta"
-            className="ml-1 rounded-full bg-ink px-4 py-2 text-sm font-medium text-bg transition-colors hover:bg-white"
+            className="ml-2 rounded-lg bg-ink px-5 py-2.5 text-sm font-semibold text-bg transition-colors hover:bg-white"
           >
-            Get started
+            Start free trial
           </a>
         </div>
 
@@ -68,13 +69,17 @@ export default function Nav() {
       {open && (
         <div className="border-t border-line bg-bg/95 px-5 py-5 backdrop-blur-xl md:hidden">
           <div className="flex flex-col gap-4">
-            {links.map((l) => (
-              <a key={l.href} href={l.href} onClick={() => setOpen(false)} className="text-sm text-muted">
+            {rightLinks.map((l) => (
+              <a key={l.label} href={l.href} onClick={() => setOpen(false)} className="text-sm text-muted">
                 {l.label}
               </a>
             ))}
-            <a href="#cta" onClick={() => setOpen(false)} className="pill-primary">
-              Get started
+            <a
+              href="#cta"
+              onClick={() => setOpen(false)}
+              className="rounded-lg bg-ink px-5 py-2.5 text-center text-sm font-semibold text-bg"
+            >
+              Start free trial
             </a>
           </div>
         </div>
