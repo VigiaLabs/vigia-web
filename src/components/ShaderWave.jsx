@@ -1,6 +1,12 @@
 import { ShaderGradientCanvas, ShaderGradient } from '@shadergradient/react'
 
-export default function ShaderWave() {
+export default function ShaderWave({
+  color1 = '#326BFF',
+  color2 = '#9B51E0',
+  color3 = '#06B6D4',
+  rotationZ = -60,
+  rotationY = 0,
+}) {
   return (
     <ShaderGradientCanvas
       style={{ position: 'absolute', inset: 0, width: '100%', height: '100%' }}
@@ -19,11 +25,11 @@ export default function ShaderWave() {
         positionY={1.6}
         positionZ={0}
         rotationX={45}
-        rotationY={0}
-        rotationZ={-60}
-        color1="#326BFF"
-        color2="#9B51E0"
-        color3="#06B6D4"
+        rotationY={rotationY}
+        rotationZ={rotationZ}
+        color1={color1}
+        color2={color2}
+        color3={color3}
         reflection={0.1}
         wireframe={false}
         shader="defaults"
