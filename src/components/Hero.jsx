@@ -1,18 +1,19 @@
-import { useRef } from 'react'
+import { useRef, Suspense, lazy } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { ArrowRight, Coins } from 'lucide-react'
 import HazardMockup from './mockups/HazardMockup'
-import VigiaMark from './VigiaMark'
+
+const ShaderWave = lazy(() => import('./ShaderWave'))
 
 const ease = [0.22, 1, 0.36, 1]
 const marquee = ['EARN WHILE YOU DRIVE', 'MAP THE WORLD', 'OWN YOUR DATA', 'DRIVE SMARTER']
 
 const trustLogos = [
-  'Govt. of Kerala',
-  'NHAI',
-  'IIT Madras',
-  'MeitY',
-  'ISRO',
+  { name: 'Govt. of Kerala', abbr: 'GoK' },
+  { name: 'NHAI', abbr: 'NHAI' },
+  { name: 'IIT Madras', abbr: 'IITM' },
+  { name: 'MeitY', abbr: 'MeitY' },
+  { name: 'ISRO', abbr: 'ISRO' },
 ]
 
 export default function Hero() {
@@ -26,32 +27,14 @@ export default function Hero() {
   const opacity = useTransform(scrollYProgress, [0, 1], [0.4, 1])
 
   return (
-    <section id="top" className="relative overflow-hidden aurora">
-      <div className="container-c section relative flex flex-col items-center pt-36 text-center sm:pt-48">
-
-        {/* App icon card — Mobbin-style centered mark */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8, y: 10 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          transition={{ duration: 0.55, ease }}
-          className="mb-8"
-        >
-          <div
-            className="grid h-[76px] w-[76px] place-items-center rounded-[22px] border border-white/10"
-            style={{
-              background: 'linear-gradient(145deg, #1a1a1f 0%, #0e0e12 100%)',
-              boxShadow: '0 8px 32px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.07)',
-            }}
-          >
-            <VigiaMark size={40} />
-          </div>
-        </motion.div>
+    <section id="top" className="relative overflow-hidden">
+      <div className="container-c section relative flex flex-col items-center pt-28 text-center sm:pt-36">
 
         {/* Headline */}
         <motion.h1
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.1, ease }}
+          transition={{ duration: 0.7, ease }}
           className="h-display mx-auto max-w-4xl text-[clamp(2.75rem,8vw,6rem)]"
         >
           Earn while<br />you <span className="h-soft">drive.</span>
@@ -61,11 +44,11 @@ export default function Hero() {
         <motion.p
           initial={{ opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.2 }}
-          className="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-muted sm:text-xl"
+          transition={{ duration: 0.7, delay: 0.18 }}
+          className="mx-auto mt-6 max-w-lg text-lg leading-relaxed text-muted"
         >
-          VIGIA is an AI edge node for your car. It reads the road, warns before impact,
-          and pays you in $VGA for every mile of road intelligence you contribute.
+          An AI edge node for your car. Reads the road, warns before impact,
+          and pays you in $VGA for every mile you contribute.
         </motion.p>
 
         {/* CTAs */}
@@ -82,29 +65,49 @@ export default function Hero() {
           <a href="#how" className="pill-ghost">See it work →</a>
         </motion.div>
 
-        {/* Trust strip */}
+        {/* Trust strip — Mobbin staggered fade-in */}
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.55 }}
-          className="mt-14 flex flex-col items-center gap-5"
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.4 }}
+          variants={{
+            hidden: {},
+            show: { transition: { staggerChildren: 0.09, delayChildren: 0.1 } },
+          }}
+          className="mt-16 flex flex-col items-center gap-5"
         >
-          <p className="font-mono text-[11px] tracking-widest text-muted-2 uppercase">Deployed in partnership with</p>
-          <div className="flex flex-wrap items-center justify-center gap-8">
-            {trustLogos.map((name) => (
-              <span
+          <motion.p
+            variants={{ hidden: { opacity: 0 }, show: { opacity: 1, transition: { duration: 0.5 } } }}
+            className="font-mono text-[11px] tracking-widest text-muted-2 uppercase"
+          >
+            Deployed in partnership with
+          </motion.p>
+          <div className="flex flex-wrap items-center justify-center gap-10">
+            {trustLogos.map(({ name }) => (
+              <motion.span
                 key={name}
+                variants={{
+                  hidden: { opacity: 0, y: 12 },
+                  show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] } },
+                }}
                 className="font-display text-sm font-semibold tracking-wide text-muted-2"
               >
                 {name}
-              </span>
+              </motion.span>
             ))}
           </div>
         </motion.div>
       </div>
 
+      {/* Shader wave — handhold.io style fluid gradient below CTA */}
+      <div className="relative mt-10 h-[340px] w-full overflow-hidden">
+        <Suspense fallback={<div className="h-full w-full" />}>
+          <ShaderWave />
+        </Suspense>
+      </div>
+
       {/* Marquee */}
-      <div className="relative mt-20 overflow-hidden border-y border-line py-4">
+      <div className="relative overflow-hidden border-y border-line py-4">
         <div className="flex w-max motion-safe:animate-marquee">
           {[...marquee, ...marquee].map((t, i) => (
             <span key={i} className="mx-6 flex shrink-0 items-center gap-6 font-display text-sm font-medium tracking-widest text-muted">

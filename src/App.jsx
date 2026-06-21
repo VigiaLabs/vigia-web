@@ -1,5 +1,6 @@
 import useLenis from './lib/useLenis'
 import ScrollProgress from './components/ScrollProgress'
+import AnnouncementBar from './components/AnnouncementBar'
 import Nav from './components/Nav'
 import Hero from './components/Hero'
 import StickySteps from './components/StickySteps'
@@ -14,6 +15,7 @@ export default function App() {
   return (
     <>
       <ScrollProgress />
+      <AnnouncementBar />
       <Nav />
       <main>
         <Hero />

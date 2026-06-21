@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Menu, X } from 'lucide-react'
+import { Menu, X, ChevronDown } from 'lucide-react'
 import VigiaMark from './VigiaMark'
 
 const links = [
@@ -22,17 +22,19 @@ export default function Nav() {
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-50 transition-colors duration-300 ${
-        scrolled ? 'border-b border-line bg-bg/80 backdrop-blur-xl' : 'border-b border-transparent'
+      className={`sticky top-0 z-40 transition-colors duration-300 ${
+        scrolled ? 'border-b border-line bg-bg/85 backdrop-blur-xl' : 'border-b border-transparent bg-transparent'
       }`}
     >
-      <nav className="container-c section flex h-[72px] items-center justify-between">
+      <nav className="container-c section flex h-[68px] items-center justify-between">
+        {/* Logo */}
         <a href="#top" className="flex items-center gap-2.5 text-ink" aria-label="VIGIA home">
-          <VigiaMark size={30} />
-          <span className="font-display text-xl font-bold tracking-tight">VIGIA</span>
+          <VigiaMark size={28} />
+          <span className="font-display text-[18px] font-bold tracking-tight">VIGIA</span>
         </a>
 
-        <div className="hidden items-center gap-8 md:flex">
+        {/* Center links */}
+        <div className="hidden items-center gap-7 md:flex">
           {links.map((l) => (
             <a key={l.href} href={l.href} className="text-sm text-muted transition-colors hover:text-ink">
               {l.label}
@@ -40,21 +42,26 @@ export default function Nav() {
           ))}
         </div>
 
-        <div className="hidden items-center gap-2.5 md:flex">
-          <a href="#" className="text-sm font-medium text-ink transition-colors hover:text-accent">
+        {/* Right actions */}
+        <div className="hidden items-center gap-1 md:flex">
+          <a href="#" className="rounded-full px-4 py-2 text-sm text-muted transition-colors hover:bg-surface hover:text-ink">
             Sign in
           </a>
-          <a href="#cta" className="pill-primary !py-2.5 !text-sm">
-            Get early access
+          <a
+            href="#cta"
+            className="ml-1 rounded-full bg-ink px-4 py-2 text-sm font-medium text-bg transition-colors hover:bg-white"
+          >
+            Get started
           </a>
         </div>
 
+        {/* Mobile hamburger */}
         <button
-          className="grid h-10 w-10 place-items-center rounded-full border border-line-2 md:hidden"
+          className="grid h-9 w-9 place-items-center rounded-full border border-line md:hidden"
           aria-label={open ? 'Close menu' : 'Open menu'}
           onClick={() => setOpen((o) => !o)}
         >
-          {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          {open ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
         </button>
       </nav>
 
@@ -67,7 +74,7 @@ export default function Nav() {
               </a>
             ))}
             <a href="#cta" onClick={() => setOpen(false)} className="pill-primary">
-              Get early access
+              Get started
             </a>
           </div>
         </div>
