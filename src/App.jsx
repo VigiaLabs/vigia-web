@@ -7,6 +7,29 @@ import FeatureSpotlight from './components/FeatureSpotlight';
 import Pricing from './components/Pricing';
 import CTA from './components/CTA';
 import Footer from './components/Footer';
+import HazardMockup from './components/mockups/HazardMockup';
+import CopilotMockup from './components/mockups/CopilotMockup';
+import EarningsMockup from './components/mockups/EarningsMockup';
+
+/* Wraps dark-theme mockups in a self-contained dark context so they
+   render correctly inside the light-mode page, the same way Intercom
+   shows their dark app UI on white sections. */
+function DarkFrame({ children }) {
+  return (
+    <div style={{
+      background: '#09090B',
+      borderRadius: 25,
+      overflow: 'hidden',
+      boxShadow: '0 24px 64px rgba(0,0,0,0.14)',
+      /* reset Tailwind custom-property equivalents for dark-themed children */
+      '--tw-shadow-color': 'rgba(0,0,0,0.5)',
+    }}
+      className="dark-frame"
+    >
+      {children}
+    </div>
+  );
+}
 
 export default function App() {
   return (
@@ -19,20 +42,23 @@ export default function App() {
       <FeatureSpotlight
         eyebrow="Hazard Detection"
         heading="Spot every pothole, crack, and hazard — automatically."
-        body="VIGIA's edge AI runs on-device, processing road data in under 50ms. No cloud dependency. No latency. Just instant, accurate detection."
+        body="VIGIA's edge AI runs on-device, processing road data in under 50 ms. No cloud dependency. No latency. Just instant, accurate detection that keeps drivers safe."
+        image={<DarkFrame><HazardMockup /></DarkFrame>}
         bg="#fff"
       />
       <FeatureSpotlight
-        eyebrow="Driver Copilot"
+        eyebrow="Voice Copilot"
         heading="Real-time alerts before you reach the danger."
-        body="BLE broadcast alerts reach drivers up to 300m ahead of a hazard. VIGIA integrates with your existing navigation to keep every journey safe."
+        body="The VIGIA voice copilot broadcasts hazard alerts over BLE to drivers up to 300 m ahead. Conversational, context-aware, and always on — even without internet."
+        image={<DarkFrame><CopilotMockup /></DarkFrame>}
         flip={true}
         bg="#F5F5F5"
       />
       <FeatureSpotlight
         eyebrow="Community Earnings"
-        heading="Turn your road data into real income."
-        body="Host a VIGIA node and earn credits for every kilometer of road data you contribute. A new model for civic participation."
+        heading="Turn your daily drive into real income."
+        body="Host a VIGIA node and earn $VGA credits for every kilometre of verified road data you contribute. A new model for civic participation — and a new revenue stream for drivers."
+        image={<DarkFrame><EarningsMockup /></DarkFrame>}
         bg="#fff"
       />
       <Pricing />
