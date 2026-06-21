@@ -32,7 +32,7 @@ function Counter({ value, prefix = '', suffix = '' }) {
 
   const shown = dec ? n.toFixed(1) : Math.round(n).toLocaleString('en-US')
   return (
-    <span ref={ref} className="font-display text-5xl font-bold tracking-tight text-grad sm:text-6xl">
+    <span ref={ref} className="font-display text-5xl font-bold tracking-tight text-ink sm:text-6xl">
       {prefix}{shown}{suffix}
     </span>
   )

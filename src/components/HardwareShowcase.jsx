@@ -25,7 +25,7 @@ export default function HardwareShowcase() {
     <section id="hardware" ref={ref} className="relative overflow-hidden py-28 sm:py-36">
       <div className="container-c section">
         <motion.div variants={fadeUp} initial="hidden" whileInView="show" viewport={viewportOnce} className="mx-auto mb-16 max-w-2xl text-center">
-          <p className="eyebrow mb-4 text-cyan">The edge node</p>
+          <p className="eyebrow mb-4 text-accent">The edge node</p>
           <h2 className="h-display text-[clamp(2.25rem,5vw,3.75rem)]">Meet the node that does the work</h2>
           <p className="mx-auto mt-5 max-w-xl text-lg leading-relaxed text-muted">
             A purpose-built device that perceives the road, protects the driver, and signs every contribution at the source.
@@ -39,10 +39,10 @@ export default function HardwareShowcase() {
           </motion.div>
 
           <motion.div style={{ y: chipsY }} className="pointer-events-none absolute inset-0">
-            <span className="absolute -left-4 top-6 hidden rounded-full border border-line bg-surface/80 px-3 py-1.5 font-mono text-[10px] tracking-wider text-cyan backdrop-blur sm:block">
+            <span className="absolute -left-4 top-6 hidden rounded-full border border-line bg-surface/80 px-3 py-1.5 font-mono text-[10px] tracking-wider text-accent backdrop-blur sm:block">
               47 MS INFERENCE
             </span>
-            <span className="absolute -right-6 bottom-8 hidden rounded-full border border-line bg-surface/80 px-3 py-1.5 font-mono text-[10px] tracking-wider text-gold backdrop-blur sm:block">
+            <span className="absolute -right-6 bottom-8 hidden rounded-full border border-line bg-surface/80 px-3 py-1.5 font-mono text-[10px] tracking-wider text-muted backdrop-blur sm:block">
               SIGNED · $VGA
             </span>
           </motion.div>
@@ -58,7 +58,7 @@ export default function HardwareShowcase() {
         >
           {specs.map(({ icon: Icon, label, value }) => (
             <motion.div key={label} variants={fadeUp} className="bg-bg p-7">
-              <Icon className="mb-5 h-6 w-6 text-cyan" strokeWidth={1.6} />
+              <Icon className="mb-5 h-6 w-6 text-accent" strokeWidth={1.6} />
               <p className="eyebrow text-muted-2">{label}</p>
               <p className="mt-2 text-lg">{value}</p>
             </motion.div>

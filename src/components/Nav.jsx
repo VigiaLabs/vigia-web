@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Menu, X } from 'lucide-react'
+import VigiaMark from './VigiaMark'
 
 const links = [
   { label: 'How it works', href: '#how' },
@@ -7,17 +8,6 @@ const links = [
   { label: 'Earn', href: '#earn' },
   { label: 'Pricing', href: '#pricing' },
 ]
-
-function Mark() {
-  return (
-    <span
-      className="grid h-8 w-8 place-items-center rounded-xl"
-      style={{ background: 'radial-gradient(circle at 35% 30%, #8F6CF6, #2E2450 70%)' }}
-    >
-      <span className="h-2.5 w-2.5 rounded-full" style={{ background: 'linear-gradient(135deg,#FF3D8F,#4CC2FF)' }} />
-    </span>
-  )
-}
 
 export default function Nav() {
   const [scrolled, setScrolled] = useState(false)
@@ -37,8 +27,8 @@ export default function Nav() {
       }`}
     >
       <nav className="container-c section flex h-[72px] items-center justify-between">
-        <a href="#top" className="flex items-center gap-2.5" aria-label="VIGIA home">
-          <Mark />
+        <a href="#top" className="flex items-center gap-2.5 text-ink" aria-label="VIGIA home">
+          <VigiaMark size={30} />
           <span className="font-display text-xl font-bold tracking-tight">VIGIA</span>
         </a>
 
@@ -51,7 +41,7 @@ export default function Nav() {
         </div>
 
         <div className="hidden items-center gap-2.5 md:flex">
-          <a href="#" className="text-sm font-medium text-ink transition-colors hover:text-cyan">
+          <a href="#" className="text-sm font-medium text-ink transition-colors hover:text-accent">
             Sign in
           </a>
           <a href="#cta" className="pill-primary !py-2.5 !text-sm">

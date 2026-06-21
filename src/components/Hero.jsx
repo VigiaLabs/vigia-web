@@ -8,7 +8,6 @@ const marquee = ['EARN WHILE YOU DRIVE', 'MAP THE WORLD', 'OWN YOUR DATA', 'DRIV
 
 export default function Hero() {
   const revealRef = useRef(null)
-  // Scroll-scale reveal: the product panel grows from 0.86→1 and lifts as it enters.
   const { scrollYProgress } = useScroll({
     target: revealRef,
     offset: ['start 0.95', 'start 0.35'],
@@ -26,7 +25,7 @@ export default function Hero() {
           transition={{ duration: 0.6, delay: 0.1 }}
           className="mb-6 inline-flex items-center gap-2 rounded-full border border-line bg-surface/60 px-3.5 py-1.5 text-xs text-muted backdrop-blur"
         >
-          <span className="h-1.5 w-1.5 animate-blink rounded-full bg-cyan" />
+          <span className="h-1.5 w-1.5 animate-blink rounded-full bg-accent" />
           The AI dashcam that pays you back · join the waitlist
         </motion.div>
 
@@ -36,7 +35,7 @@ export default function Hero() {
           transition={{ duration: 0.7, ease }}
           className="h-display mx-auto max-w-4xl text-[clamp(2.75rem,8vw,6rem)]"
         >
-          Earn while<br />you <span className="text-grad">drive.</span>
+          Earn while<br />you <span className="h-soft">drive.</span>
         </motion.h1>
 
         <motion.p
@@ -69,7 +68,7 @@ export default function Hero() {
           {[...marquee, ...marquee].map((t, i) => (
             <span key={i} className="mx-6 flex shrink-0 items-center gap-6 font-display text-sm font-medium tracking-widest text-muted">
               {t}
-              <span className="text-cyan">✦</span>
+              <span className="text-muted-2">/</span>
             </span>
           ))}
         </div>
@@ -79,7 +78,6 @@ export default function Hero() {
       <div ref={revealRef} className="container-c section pb-24 pt-16 sm:pb-32">
         <motion.div style={{ scale, y, opacity }} className="relative mx-auto max-w-3xl">
           <HazardMockup />
-          {/* floating earnings chip */}
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -87,7 +85,7 @@ export default function Hero() {
             transition={{ delay: 0.3 }}
             className="absolute -bottom-5 -right-3 flex items-center gap-2 rounded-2xl border border-line bg-surface/90 px-4 py-3 shadow-xl backdrop-blur sm:-right-8"
           >
-            <span className="grid h-8 w-8 place-items-center rounded-full bg-gold/15 text-gold">
+            <span className="grid h-8 w-8 place-items-center rounded-full bg-accent/15 text-accent">
               <Coins className="h-4 w-4" />
             </span>
             <span className="text-left">

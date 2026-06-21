@@ -4,25 +4,22 @@ export default {
   theme: {
     extend: {
       colors: {
-        // Dark "Ember Night" base
-        bg: '#0C0A09',
-        'bg-2': '#15110E',
-        surface: '#1A1512',
-        'surface-2': '#221C18',
-        ink: '#F4EFE9',
-        muted: '#A39B90',
-        'muted-2': '#6F665C',
-        line: 'rgba(244,239,233,0.09)',
-        'line-2': 'rgba(244,239,233,0.16)',
-        // Electric accent (orb-blue / cyan)
-        cyan: '#4CC2FF',
-        // Orb gradient stops
-        pink: '#FF3D8F',
-        violet: '#8F6CF6',
-        blue: '#4CC2FF',
-        // $VGA token
-        gold: '#FBBF24',
-        success: '#6FCF8E',
+        // Neutral, institutional dark (x.ai register)
+        bg: '#09090B',
+        'bg-2': '#0E0E11',
+        surface: '#131316',
+        'surface-2': '#1A1A1F',
+        ink: '#F5F5F7',
+        muted: '#9A9AA3',
+        'muted-2': '#67676F',
+        line: 'rgba(255,255,255,0.08)',
+        'line-2': 'rgba(255,255,255,0.15)',
+        // Single restrained accent — soft professional blue
+        accent: '#6E9BFF',
+        'accent-soft': '#A9C0FF',
+        // Semantic only (used sparingly): money/warning + success
+        amber: '#E0B24C',
+        success: '#5FBF86',
       },
       fontFamily: {
         display: ['"Space Grotesk"', 'system-ui', 'sans-serif'],
@@ -40,7 +37,7 @@ export default {
       },
       animation: {
         marquee: 'marquee 28s linear infinite',
-        'spin-slow': 'spinSlow 14s linear infinite',
+        'spin-slow': 'spinSlow 16s linear infinite',
         floaty: 'floaty 7s ease-in-out infinite',
         blink: 'blink 2s ease-in-out infinite',
       },

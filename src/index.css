@@ -29,17 +29,22 @@
   }
 
   ::selection {
-    @apply bg-cyan/30 text-ink;
+    @apply bg-accent/30 text-ink;
   }
 
   *:focus-visible {
-    @apply outline-none ring-2 ring-cyan ring-offset-2 ring-offset-bg rounded-lg;
+    @apply outline-none ring-2 ring-accent ring-offset-2 ring-offset-bg rounded-lg;
   }
 }
 
 @layer components {
   .h-display {
     @apply font-display font-medium tracking-tightest leading-[1.0];
+  }
+
+  /* Emphasised clause — tonal gray, not a gradient (x.ai register) */
+  .h-soft {
+    @apply text-muted;
   }
 
   .eyebrow {
@@ -49,15 +54,12 @@
   .pill {
     @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-[15px] font-medium transition-all duration-200;
   }
+  /* Primary = solid white, dark text */
   .pill-primary {
-    @apply pill text-bg;
-    background-image: linear-gradient(100deg, #ff3d8f, #8f6cf6, #4cc2ff);
-    background-size: 160% 100%;
-    background-position: 0% 0%;
+    @apply pill bg-ink text-bg hover:bg-white;
   }
   .pill-primary:hover {
-    background-position: 100% 0%;
-    box-shadow: 0 10px 30px -8px rgba(76, 194, 255, 0.45);
+    box-shadow: 0 10px 30px -12px rgba(255, 255, 255, 0.3);
   }
   .pill-ghost {
     @apply pill border border-line-2 text-ink hover:bg-surface;
@@ -65,11 +67,6 @@
 
   .card {
     @apply rounded-3xl border border-line bg-surface;
-  }
-
-  .text-grad {
-    @apply bg-clip-text text-transparent;
-    background-image: linear-gradient(100deg, #ff3d8f, #8f6cf6, #4cc2ff);
   }
 }
 
@@ -80,11 +77,11 @@
   .container-c {
     @apply mx-auto max-w-content;
   }
+  /* Subtle institutional glow — single faint accent, no rainbow */
   .aurora {
     background-image:
-      radial-gradient(38% 50% at 15% 8%, rgba(255, 61, 143, 0.14), transparent 70%),
-      radial-gradient(44% 55% at 85% 14%, rgba(76, 194, 255, 0.16), transparent 70%),
-      radial-gradient(50% 60% at 50% 100%, rgba(143, 108, 246, 0.16), transparent 70%);
+      radial-gradient(50% 40% at 50% -5%, rgba(110, 155, 255, 0.08), transparent 70%),
+      radial-gradient(40% 35% at 85% 10%, rgba(255, 255, 255, 0.03), transparent 70%);
   }
 }
 

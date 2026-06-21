@@ -15,11 +15,11 @@ export default function EarningsMockup() {
         <div>
           <p className="font-mono text-[10px] tracking-[0.18em] text-muted">THIS MONTH</p>
           <div className="mt-2 flex items-center gap-2">
-            <span className="grid h-7 w-7 place-items-center rounded-full bg-gold/15 text-gold">
+            <span className="grid h-7 w-7 place-items-center rounded-full bg-amber/15 text-amber">
               <Coins className="h-4 w-4" />
             </span>
             <p className="font-display text-5xl font-bold tracking-tight">142</p>
-            <span className="font-display text-2xl font-semibold text-gold">$VGA</span>
+            <span className="font-display text-2xl font-semibold text-muted">$VGA</span>
           </div>
         </div>
         <span className="rounded-full bg-success/15 px-3 py-1 font-mono text-[11px] tracking-wider text-success">+18%</span>
@@ -38,8 +38,7 @@ export default function EarningsMockup() {
                 whileInView={{ width: `${r.val}%` }}
                 viewport={viewportOnce}
                 transition={{ duration: 0.9, ease: 'easeOut' }}
-                className="h-full rounded-full"
-                style={{ background: 'linear-gradient(90deg,#FBBF24,#FF3D8F)' }}
+                className="h-full rounded-full bg-accent"
               />
             </div>
           </div>

@@ -90,14 +90,14 @@ export default function StickySteps() {
                 <div className="mb-5 flex items-center gap-3">
                   <span className="font-mono text-sm text-muted-2">{n}</span>
                   <span className="h-px w-8 bg-line-2" />
-                  <span className="eyebrow text-cyan">{eyebrow}</span>
+                  <span className="eyebrow text-accent">{eyebrow}</span>
                 </div>
                 <h2 className="h-display text-[clamp(2rem,4.5vw,3.25rem)]">{title}</h2>
                 <p className="mt-5 max-w-md text-lg leading-relaxed text-muted">{body}</p>
                 <ul className="mt-7 space-y-3">
                   {points.map((p) => (
                     <li key={p} className="flex items-start gap-3">
-                      <span className="mt-0.5 grid h-5 w-5 shrink-0 place-items-center rounded-full bg-cyan/15 text-cyan">
+                      <span className="mt-0.5 grid h-5 w-5 shrink-0 place-items-center rounded-full bg-accent/15 text-accent">
                         <Check className="h-3 w-3" strokeWidth={3} />
                       </span>
                       <span className="text-ink">{p}</span>

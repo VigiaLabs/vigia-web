@@ -7,10 +7,10 @@ export default function NodeDevice({ className = '' }) {
     <div className={`relative ${className}`} aria-hidden="true">
       {/* glow */}
       <div
-        className="absolute -inset-8 rounded-[40px] blur-3xl opacity-60"
+        className="absolute -inset-8 rounded-[40px] blur-3xl opacity-50"
         style={{
           background:
-            'radial-gradient(circle at 30% 40%, rgba(255,61,143,0.35), transparent 60%), radial-gradient(circle at 70% 60%, rgba(76,194,255,0.35), transparent 60%)',
+            'radial-gradient(circle at 50% 45%, rgba(110,155,255,0.28), transparent 62%), radial-gradient(circle at 70% 60%, rgba(255,255,255,0.06), transparent 60%)',
         }}
       />
       {/* body */}
@@ -32,8 +32,8 @@ export default function NodeDevice({ className = '' }) {
             <div
               className="absolute inset-[26%] rounded-full"
               style={{
-                background: 'radial-gradient(circle at 38% 32%, #6E5BB8, #2E2450 45%, #0A0716 80%)',
-                boxShadow: '0 0 24px rgba(143,108,246,0.5)',
+                background: 'radial-gradient(circle at 38% 32%, #556678 0%, #2A2D34 45%, #0A0B0E 80%)',
+                boxShadow: '0 0 22px rgba(110,155,255,0.35)',
               }}
             />
             <div className="absolute left-[34%] top-[30%] h-[14%] w-[18%] rounded-full bg-white/70 blur-[2px]" />
@@ -44,7 +44,7 @@ export default function NodeDevice({ className = '' }) {
             <div className="flex items-center justify-between">
               <span className="font-display text-lg font-bold tracking-[0.2em] text-ink/90">VIGIA</span>
               <span className="flex items-center gap-1.5">
-                <span className="h-2 w-2 animate-blink rounded-full bg-cyan shadow-[0_0_8px_#4CC2FF]" />
+                <span className="h-2 w-2 animate-blink rounded-full bg-accent shadow-[0_0_8px_#6E9BFF]" />
                 <span className="font-mono text-[9px] tracking-widest text-muted">REC</span>
               </span>
             </div>

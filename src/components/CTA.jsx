@@ -18,7 +18,7 @@ export default function CTA() {
         </motion.div>
 
         <motion.h2 variants={fadeUp} initial="hidden" whileInView="show" viewport={viewportOnce} className="h-display mx-auto max-w-3xl text-[clamp(2.25rem,6vw,4.5rem)]">
-          Every mile has value.<br />Start <span className="text-grad">capturing yours.</span>
+          Every mile has value.<br /><span className="h-soft">Start capturing yours.</span>
         </motion.h2>
 
         <motion.p variants={fadeUp} initial="hidden" whileInView="show" viewport={viewportOnce} className="mx-auto mt-6 max-w-lg text-lg text-muted">
