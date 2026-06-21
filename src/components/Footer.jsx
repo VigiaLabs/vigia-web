@@ -1,60 +1,33 @@
-import { Github, Twitter, Linkedin } from 'lucide-react'
-import VigiaMark from './VigiaMark'
-
-const cols = [
-  { title: 'Product', links: ['How it works', 'Hardware', 'Earn', 'Pricing'] },
-  { title: 'Company', links: ['About', 'Careers', 'Blog', 'Contact'] },
-  { title: 'Legal', links: ['Privacy', 'Terms', 'Data policy'] },
-]
-
-const socials = [
-  { icon: Github, label: 'GitHub' },
-  { icon: Twitter, label: 'X / Twitter' },
-  { icon: Linkedin, label: 'LinkedIn' },
-]
-
+const links = {
+  Product: ['How it works', 'Hardware', 'Earn', 'Pricing', 'Changelog'],
+  Solutions: ['City governments', 'Fleet operators', 'Individual drivers', 'Communities', 'Researchers'],
+  Developers: ['API docs', 'MQTT protocol', 'BLE spec', 'GitHub', 'Status'],
+  Company: ['About', 'Blog', 'Careers', 'Press', 'Contact'],
+  Legal: ['Privacy', 'Terms', 'Security', 'Cookies'],
+};
 export default function Footer() {
   return (
-    <footer id="footer" className="border-t border-line bg-bg">
-      <div className="container-c section py-16">
-        <div className="grid gap-12 md:grid-cols-[1.6fr_1fr_1fr_1fr]">
-          <div>
-            <div className="flex items-center gap-2.5 text-ink">
-              <VigiaMark size={30} />
-              <span className="font-display text-xl font-bold tracking-tight">VIGIA</span>
-            </div>
-            <p className="mt-4 max-w-xs leading-relaxed text-muted">
-              Earn while you drive. The AI copilot and edge node that reads the road,
-              protects you, and pays you back for the intelligence your drive contributes.
-            </p>
-            <div className="mt-6 flex gap-3">
-              {socials.map(({ icon: Icon, label }) => (
-                <a key={label} href="#" aria-label={label} className="grid h-10 w-10 place-items-center rounded-full border border-line-2 text-muted transition-colors hover:border-accent hover:text-accent">
-                  <Icon className="h-4 w-4" />
-                </a>
-              ))}
-            </div>
-          </div>
-
-          {cols.map((col) => (
-            <div key={col.title}>
-              <h4 className="eyebrow mb-5 text-muted-2">{col.title}</h4>
-              <ul className="space-y-3">
-                {col.links.map((link) => (
-                  <li key={link}>
-                    <a href="#" className="text-sm text-muted transition-colors hover:text-ink">{link}</a>
+    <footer style={{ background: '#fff', borderTop: '1px solid #E7E7E7', padding: '80px 7% 40px' }}>
+      <div style={{ maxWidth: 1290, margin: '0 auto' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: 40, marginBottom: 64 }}>
+          {Object.entries(links).map(([section, items]) => (
+            <div key={section}>
+              <p style={{ fontSize: 13, fontWeight: 700, color: '#000', textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: 16 }}>{section}</p>
+              <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
+                {items.map(item => (
+                  <li key={item} style={{ marginBottom: 10 }}>
+                    <a href="#" style={{ fontSize: 14, color: '#6B6B6B', textDecoration: 'none' }}>{item}</a>
                   </li>
                 ))}
               </ul>
             </div>
           ))}
         </div>
-
-        <div className="mt-14 flex flex-col items-center justify-between gap-3 border-t border-line pt-7 text-sm text-muted sm:flex-row">
-          <p>© {new Date().getFullYear()} VIGIA Labs. All rights reserved.</p>
-          <p>Earn while you drive.</p>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingTop: 32, borderTop: '1px solid #E7E7E7' }}>
+          <div style={{ fontWeight: 800, fontSize: 18, color: '#000' }}>VIGIA</div>
+          <p style={{ fontSize: 13, color: '#A0A0A0' }}>© 2025 VigiaLabs. All rights reserved.</p>
         </div>
       </div>
     </footer>
-  )
+  );
 }

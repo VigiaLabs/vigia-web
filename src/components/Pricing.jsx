@@ -1,84 +1,47 @@
-import { motion } from 'framer-motion'
-import { Check } from 'lucide-react'
-import { fadeUp, stagger, viewportOnce } from '../lib/motion'
-
-const tiers = [
-  {
-    name: 'Driver',
-    price: 'Free',
-    note: 'Get a node, start earning',
-    features: ['1 edge node', 'Real-time hazard alerts', 'Base $VGA rewards', 'Core voice copilot'],
-    cta: 'Join the waitlist',
-    featured: false,
-  },
-  {
-    name: 'Plus',
-    price: '$9',
-    per: '/mo',
-    note: 'One month of driving pays for it',
-    features: ['Everything in Driver', '1.5× rewards multiplier', 'Full conversational copilot', 'Priority routes & faster payouts', 'Premium driver profiles'],
-    cta: 'Get early access',
-    featured: true,
-  },
-  {
-    name: 'Fleet',
-    price: 'Custom',
-    note: 'For teams and operators',
-    features: ['Everything in Plus', 'Multi-node dashboard', 'Road-intelligence API', 'Team seats & roles', 'Dedicated support'],
-    cta: 'Talk to sales',
-    featured: false,
-  },
-]
-
+const plans = [
+  { name: 'Driver', price: 'Free', desc: 'For individual drivers who want real-time hazard alerts.', features: ['Real-time BLE alerts', 'Basic hazard map', 'Community reports', '1 device'], cta: 'Get started free', featured: false },
+  { name: 'Plus', price: '$9', period: '/mo', desc: 'For drivers and small fleets who want more.', features: ['Everything in Driver', 'Advanced route safety score', 'Fleet dashboard (up to 5)', 'Priority alerts', 'CSV export'], cta: 'Start free trial', featured: true },
+  { name: 'Fleet', price: 'Custom', desc: 'For governments, logistics companies, and large fleets.', features: ['Everything in Plus', 'Unlimited devices', 'API access', 'SLA guarantee', 'Dedicated support'], cta: 'Contact sales', featured: false },
+];
 export default function Pricing() {
   return (
-    <section id="pricing" className="container-c section py-28 sm:py-32">
-      <motion.div variants={fadeUp} initial="hidden" whileInView="show" viewport={viewportOnce} className="mx-auto mb-14 max-w-2xl text-center">
-        <p className="eyebrow mb-4 text-accent">Pricing</p>
-        <h2 className="h-display text-[clamp(2.25rem,5vw,3.75rem)]">One month of driving pays for itself</h2>
-        <p className="mx-auto mt-5 max-w-xl text-lg text-muted">
-          Start earning for free. Upgrade when the rewards roll in.
-        </p>
-      </motion.div>
-
-      <motion.div variants={stagger(0.1)} initial="hidden" whileInView="show" viewport={viewportOnce} className="grid items-stretch gap-6 lg:grid-cols-3">
-        {tiers.map((t) => (
-          <motion.div
-            key={t.name}
-            variants={fadeUp}
-            className={`relative flex flex-col rounded-3xl p-8 ${
-              t.featured ? 'border-2 border-accent bg-surface' : 'card'
-            }`}
-          >
-            {t.featured && (
-              <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-accent px-3 py-1 font-mono text-[10px] uppercase tracking-wider text-bg">
-                Most popular
-              </span>
-            )}
-            <h3 className="font-display text-lg font-semibold">{t.name}</h3>
-            <div className="mt-3 flex items-end gap-1">
-              <span className="font-display text-5xl font-bold tracking-tight">{t.price}</span>
-              {t.per && <span className="mb-1.5 text-muted">{t.per}</span>}
+    <section style={{ background: '#fff', padding: '100px 7%' }}>
+      <div style={{ maxWidth: 1290, margin: '0 auto' }}>
+        <h2 style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', fontWeight: 800, textAlign: 'center', color: '#000', marginBottom: 16 }}>Simple, transparent pricing</h2>
+        <p style={{ textAlign: 'center', color: '#6B6B6B', fontSize: 18, marginBottom: 64 }}>Start free. Scale as you grow.</p>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 24 }}>
+          {plans.map(plan => (
+            <div key={plan.name} style={{
+              borderRadius: 12, padding: '40px 32px',
+              border: plan.featured ? '2px solid #326BFF' : '1.5px solid #E7E7E7',
+              background: '#fff', display: 'flex', flexDirection: 'column'
+            }}>
+              <div style={{ marginBottom: 24 }}>
+                <p style={{ fontSize: 14, fontWeight: 600, color: '#326BFF', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 8 }}>{plan.name}</p>
+                <div style={{ display: 'flex', alignItems: 'baseline', gap: 4, marginBottom: 12 }}>
+                  <span style={{ fontSize: 48, fontWeight: 800, color: '#000', lineHeight: 1 }}>{plan.price}</span>
+                  {plan.period && <span style={{ fontSize: 18, color: '#6B6B6B' }}>{plan.period}</span>}
+                </div>
+                <p style={{ fontSize: 15, color: '#6B6B6B', lineHeight: 1.5 }}>{plan.desc}</p>
+              </div>
+              <ul style={{ listStyle: 'none', padding: 0, margin: '0 0 32px', flex: 1 }}>
+                {plan.features.map(f => (
+                  <li key={f} style={{ fontSize: 15, color: '#000', padding: '8px 0', borderBottom: '1px solid #F5F5F5', display: 'flex', alignItems: 'center', gap: 8 }}>
+                    <span style={{ color: '#00A862', fontWeight: 700 }}>✓</span> {f}
+                  </li>
+                ))}
+              </ul>
+              <a href="#" style={{
+                display: 'block', textAlign: 'center', padding: '12px 24px',
+                borderRadius: 4, fontSize: 15, fontWeight: 600, textDecoration: 'none',
+                background: plan.featured ? '#000' : 'transparent',
+                color: plan.featured ? '#fff' : '#000',
+                border: plan.featured ? 'none' : '1.5px solid #000'
+              }}>{plan.cta}</a>
             </div>
-            <p className="mt-2 text-sm text-muted">{t.note}</p>
-
-            <ul className="mt-7 flex-1 space-y-3">
-              {t.features.map((f) => (
-                <li key={f} className="flex items-start gap-3 text-sm">
-                  <span className="mt-0.5 grid h-5 w-5 shrink-0 place-items-center rounded-full bg-accent/15 text-accent">
-                    <Check className="h-3 w-3" strokeWidth={3} />
-                  </span>
-                  <span className="text-ink">{f}</span>
-                </li>
-              ))}
-            </ul>
-
-            <a href="#cta" className={`mt-8 w-full ${t.featured ? 'pill-primary' : 'pill-ghost'}`}>
-              {t.cta}
-            </a>
-          </motion.div>
-        ))}
-      </motion.div>
+          ))}
+        </div>
+      </div>
     </section>
-  )
+  );
 }

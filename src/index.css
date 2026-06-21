@@ -1,110 +1,64 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-  :root {
-    color-scheme: dark;
-  }
-
-  html {
-    -webkit-font-smoothing: antialiased;
-    text-rendering: optimizeLegibility;
-  }
-
-  /* Lenis smooth scroll */
-  html.lenis,
-  html.lenis body {
-    height: auto;
-  }
-  .lenis.lenis-smooth {
-    scroll-behavior: auto !important;
-  }
-  .lenis.lenis-stopped {
-    overflow: hidden;
-  }
-
-  body {
-    @apply bg-bg text-ink font-sans;
-  }
-
-  ::selection {
-    @apply bg-accent/30 text-ink;
-  }
-
-  *:focus-visible {
-    @apply outline-none ring-2 ring-accent ring-offset-2 ring-offset-bg rounded-lg;
-  }
+body {
+  background: #fff;
+  color: #000;
+  font-family: Inter, Helvetica, Arial, sans-serif;
 }
 
-@layer components {
-  .h-display {
-    @apply font-display font-medium tracking-tightest leading-[1.0];
-  }
+.btn-primary {
+  background: #000;
+  color: #fff;
+  border-radius: 4px;
+  padding: 12px 24px;
+  font-weight: 600;
+  font-size: 15px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: background 0.2s;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+}
+.btn-primary:hover { background: #333; }
 
-  /* Emphasised clause — tonal gray, not a gradient (x.ai register) */
-  .h-soft {
-    @apply text-muted;
-  }
+.btn-outline {
+  background: transparent;
+  color: #000;
+  border: 1.5px solid #000;
+  border-radius: 4px;
+  padding: 12px 24px;
+  font-weight: 600;
+  font-size: 15px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: background 0.2s;
+  text-decoration: none;
+  cursor: pointer;
+  font-family: inherit;
+}
+.btn-outline:hover { background: #F5F5F5; }
 
-  .eyebrow {
-    @apply font-mono text-[11px] uppercase tracking-[0.2em];
-  }
-
-  .pill {
-    @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-[15px] font-medium transition-all duration-200;
-  }
-  /* Primary = solid white, dark text */
-  .pill-primary {
-    @apply pill bg-ink text-bg hover:bg-white;
-  }
-  .pill-primary:hover {
-    box-shadow: 0 10px 30px -12px rgba(255, 255, 255, 0.3);
-  }
-  .pill-ghost {
-    @apply pill border border-line-2 text-ink hover:bg-surface;
-  }
-
-  .card {
-    @apply rounded-3xl border border-line bg-surface;
-  }
-
-  /* Square-corner buttons — Intercom style */
-  .btn {
-    @apply inline-flex items-center justify-center gap-2 rounded-lg px-5 py-2.5 text-[15px] font-semibold transition-all duration-200;
-  }
-  .btn-primary {
-    @apply btn bg-ink text-bg hover:bg-white;
-  }
-  .btn-outline {
-    @apply btn border border-line-2 text-ink hover:bg-surface;
-  }
+.btn-blue {
+  background: #326BFF;
+  color: #fff;
+  border-radius: 4px;
+  padding: 12px 24px;
+  font-weight: 600;
+  font-size: 15px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
 }
 
-@layer utilities {
-  .section {
-    @apply px-5 sm:px-8;
-  }
-  .container-c {
-    @apply mx-auto max-w-content;
-  }
-  /* Subtle institutional glow — single faint accent, no rainbow */
-  .aurora {
-    background-image:
-      radial-gradient(50% 40% at 50% -5%, rgba(110, 155, 255, 0.08), transparent 70%),
-      radial-gradient(40% 35% at 85% 10%, rgba(255, 255, 255, 0.03), transparent 70%);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.001ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.001ms !important;
-  }
-  html {
-    scroll-behavior: auto !important;
-  }
-}
+.h-blue { color: #326BFF; }

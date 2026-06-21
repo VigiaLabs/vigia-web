@@ -1,66 +1,51 @@
-import { useRef } from 'react'
-import { motion, useScroll, useTransform } from 'framer-motion'
-import { ArrowRight } from 'lucide-react'
-import HazardMockup from './mockups/HazardMockup'
-
-const ease = [0.22, 1, 0.36, 1]
-
 export default function Hero() {
-  const revealRef = useRef(null)
-  const { scrollYProgress } = useScroll({
-    target: revealRef,
-    offset: ['start 0.95', 'start 0.35'],
-  })
-  const scale = useTransform(scrollYProgress, [0, 1], [0.92, 1])
-  const y = useTransform(scrollYProgress, [0, 1], [40, 0])
-  const opacity = useTransform(scrollYProgress, [0, 1], [0.5, 1])
-
   return (
-    <section id="top" className="relative overflow-hidden">
-      <div className="container-c section relative flex flex-col pt-24 sm:pt-32">
-
-        {/* Left-aligned headline */}
-        <motion.h1
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, ease }}
-          className="h-display text-[clamp(3rem,7vw,6.5rem)] leading-[0.95] tracking-tightest max-w-4xl"
-        >
-          Earn while<br />you <span className="h-soft">drive.</span>
-        </motion.h1>
-
-        {/* Left-aligned body */}
-        <motion.p
-          initial={{ opacity: 0, y: 18 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.18, ease }}
-          className="mt-7 max-w-lg text-lg leading-relaxed text-muted"
-        >
-          An AI edge node for your car. Reads the road, warns before impact,
-          and pays you in $VGA for every mile you contribute.
-        </motion.p>
-
-        {/* Square CTAs */}
-        <motion.div
-          initial={{ opacity: 0, y: 18 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.3, ease }}
-          className="mt-9 flex flex-wrap items-center gap-3"
-        >
-          <a href="#cta" className="btn-primary">
-            Join the waitlist
-            <ArrowRight className="h-4 w-4" />
-          </a>
-          <a href="#how" className="btn-outline">See it work →</a>
-        </motion.div>
-      </div>
-
-      {/* Full-width product reveal */}
-      <div ref={revealRef} className="container-c section pb-24 pt-14 sm:pb-32">
-        <motion.div style={{ scale, y, opacity }}>
-          <HazardMockup />
-        </motion.div>
+    <section style={{
+      minHeight: 'calc(100vh - 61px)',
+      background: '#fff',
+      display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
+      textAlign: 'center', padding: '80px 7% 60px'
+    }}>
+      <h1 style={{
+        fontSize: 'clamp(3.5rem, 7vw, 7rem)',
+        fontWeight: 800, color: '#326BFF',
+        lineHeight: 1.05, letterSpacing: '-0.03em',
+        marginBottom: 24, maxWidth: 900
+      }}>
+        Roads that protect themselves.
+      </h1>
+      <p style={{
+        fontSize: 'clamp(1.25rem, 2.5vw, 1.75rem)',
+        fontWeight: 500, color: '#000',
+        maxWidth: 640, marginBottom: 40, lineHeight: 1.4
+      }}>
+        VIGIA detects hazards, warns drivers in real-time, and turns road data into community income.
+      </p>
+      <form style={{ display: 'flex', gap: 8, marginBottom: 16 }} onSubmit={e => e.preventDefault()}>
+        <input
+          type="email" placeholder="Enter your email"
+          style={{
+            border: '1.5px solid #000', borderRadius: 4,
+            padding: '12px 16px', fontSize: 15, width: 280,
+            outline: 'none', fontFamily: 'inherit'
+          }}
+        />
+        <button type="submit" style={{
+          background: '#000', color: '#fff', borderRadius: 4,
+          padding: '12px 24px', fontSize: 15, fontWeight: 600,
+          border: 'none', cursor: 'pointer', fontFamily: 'inherit'
+        }}>Start free trial</button>
+      </form>
+      <p style={{ fontSize: 13, color: '#A0A0A0', marginBottom: 80 }}>No credit card required</p>
+      <div style={{
+        width: '100%', maxWidth: 1000,
+        background: '#F5F5F5', borderRadius: 25,
+        height: 480, display: 'flex', alignItems: 'center', justifyContent: 'center',
+        boxShadow: '0 8px 40px rgba(0,0,0,0.08)',
+        color: '#A0A0A0', fontSize: 18
+      }}>
+        [VIGIA Dashboard Mockup]
       </div>
     </section>
-  )
+  );
 }
