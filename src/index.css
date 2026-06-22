@@ -53,6 +53,34 @@ body {
   animation: shaderFadeIn 1s ease 0.35s both;
 }
 
+/* ── AI Orb (web port of vigia-android AiOrbComponent) ───────────────
+   Siri-style dark glossy sphere with counter-rotating pink→violet→blue
+   rim lights and a breathing scale. Colors from VigiaColors.kt. */
+@keyframes orbSpin    { to { transform: rotate(360deg); } }
+@keyframes orbSpinRev { to { transform: rotate(-360deg); } }
+@keyframes orbBreathe { from { transform: scale(0.97); } to { transform: scale(1.03); } }
+
+.aiorb { position: relative; display: grid; place-items: center; animation: orbBreathe 2.4s ease-in-out infinite alternate; }
+.aiorb > * { position: absolute; border-radius: 50%; }
+.aiorb-halo   { width: 132%; height: 132%; background: radial-gradient(circle at 50% 45%, rgba(143,108,246,0.32), transparent 62%); filter: blur(6px); }
+.aiorb-sphere { width: 62%; height: 62%;
+  background: radial-gradient(circle at 35% 32%, #2E2450 0%, #2E2450 30%, #0A0716 100%);
+  box-shadow: inset 0 0 42px rgba(0,0,0,0.65), 0 24px 70px rgba(10,7,22,0.5); }
+.aiorb-spec   { width: 62%; height: 62%; background: radial-gradient(circle at 33% 30%, rgba(255,255,255,0.24), transparent 46%); }
+.aiorb-rim, .aiorb-rim-glow { width: 62%; height: 62%;
+  background: conic-gradient(from 0deg, transparent 0%, #FF3D8F 10%, transparent 24%, #8F6CF6 44%, transparent 60%, #4CC2FF 80%, transparent 94%);
+  animation: orbSpin 6s linear infinite; }
+.aiorb-rim       { -webkit-mask: radial-gradient(closest-side, transparent 80%, #000 81%); mask: radial-gradient(closest-side, transparent 80%, #000 81%); }
+.aiorb-rim-glow  { filter: blur(7px); opacity: 0.55; -webkit-mask: radial-gradient(closest-side, transparent 66%, #000 70%); mask: radial-gradient(closest-side, transparent 66%, #000 70%); }
+.aiorb-rim-counter { width: 58%; height: 58%;
+  background: conic-gradient(from 0deg, transparent 0%, #4CC2FF 18%, transparent 34%, #8F6CF6 66%, transparent 82%, transparent 100%);
+  -webkit-mask: radial-gradient(closest-side, transparent 84%, #000 85%); mask: radial-gradient(closest-side, transparent 84%, #000 85%);
+  animation: orbSpinRev 11s linear infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  .aiorb, .aiorb-rim, .aiorb-rim-glow, .aiorb-rim-counter { animation: none; }
+}
+
 .btn-primary {
   background: #000;
   color: #fff;

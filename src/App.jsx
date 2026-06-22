@@ -2,6 +2,7 @@ import AnnouncementBar from './components/AnnouncementBar';
 import Nav from './components/Nav';
 import Hero from './components/Hero';
 import LogoSection from './components/LogoSection';
+import BlogCarousel from './components/BlogCarousel';
 import PlatformSection from './components/PlatformSection';
 import FeatureSpotlight from './components/FeatureSpotlight';
 import VoiceSection from './components/VoiceSection';
@@ -40,6 +41,7 @@ export default function App() {
       <Nav />
       <Hero />
       <LogoSection />
+      <BlogCarousel />
       <PlatformSection />
       <FeatureSpotlight
         heading="AI-powered hazard detection on every road."

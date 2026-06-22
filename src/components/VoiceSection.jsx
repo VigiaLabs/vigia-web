@@ -1,5 +1,6 @@
 import { ShaderGradientCanvas, ShaderGradient } from '@shadergradient/react';
 import ShaderReveal from './ShaderReveal';
+import AiOrb from './AiOrb';
 
 const GRAPHIK = "'Graphik', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, Arial, sans-serif";
 const SERIF = "'Source Serif 4', Georgia, 'Times New Roman', serif";
@@ -127,23 +128,8 @@ export default function VoiceSection() {
             There's thick fog rolling onto the highway ahead.
           </ChatBubble>
 
-          {/* orb — dark backdrop lets mix-blend knock out the PNG's background */}
-          <div style={{ position: 'relative', width: 300, height: 300, display: 'grid', placeItems: 'center' }}>
-            <div style={{
-              position: 'absolute', width: 320, height: 320, borderRadius: '50%',
-              background: 'radial-gradient(circle at 50% 50%, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0) 65%)',
-            }} />
-            <img
-              src="/orb.webp"
-              alt="VIGIA voice orb"
-              style={{
-                position: 'relative',
-                width: 300, height: 300, objectFit: 'contain',
-                mixBlendMode: 'screen',
-                filter: 'drop-shadow(0 24px 70px rgba(224,83,58,0.35))',
-              }}
-            />
-          </div>
+          {/* the real vigia-android AI orb, ported to CSS */}
+          <AiOrb size={300} />
 
           {/* vigia blurb — right gutter */}
           <ChatBubble who="vigia" style={{ right: 0, bottom: 24, transform: 'rotate(2.5deg)' }}>
