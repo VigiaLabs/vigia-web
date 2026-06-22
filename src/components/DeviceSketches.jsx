@@ -104,3 +104,52 @@ export function MobileSketch({ className = '' }) {
     </svg>
   );
 }
+
+/* ── Camera module (CSI camera + field-of-view cone) ───────────────── */
+export function CameraSketch({ className = '' }) {
+  return (
+    <svg viewBox="0 0 420 320" className={className} width="100%" role="img" aria-label="VIGIA camera module">
+      {/* camera body */}
+      <rect x="70" y="120" width="110" height="80" rx="10" {...base} fill={FAINT} />
+      {/* lens barrel */}
+      <rect x="150" y="142" width="34" height="36" rx="6" {...base} />
+      <circle cx="167" cy="160" r="22" {...base} />
+      <circle cx="167" cy="160" r="12" {...base} />
+      <circle cx="167" cy="160" r="4" {...base} />
+      {/* ribbon cable */}
+      <path d="M 70 170 q -34 0 -34 36" {...base} />
+      <line x1="36" y1="200" x2="36" y2="240" {...base} />
+      {/* field-of-view cone */}
+      <line x1="189" y1="160" x2="360" y2="92" {...base} />
+      <line x1="189" y1="160" x2="360" y2="228" {...base} />
+      <path d="M 330 110 q 18 50 0 100" {...base} />
+      {/* detected hazard markers in view */}
+      <rect x="296" y="136" width="26" height="20" rx="3" {...base} />
+      <rect x="312" y="178" width="30" height="22" rx="3" {...base} />
+    </svg>
+  );
+}
+
+/* ── Road-intelligence network (nodes meshing to a cloud) ──────────── */
+export function NetworkSketch({ className = '' }) {
+  const nodes = [[90, 230], [200, 270], [320, 235], [150, 170], [270, 165]];
+  return (
+    <svg viewBox="0 0 420 320" className={className} width="100%" role="img" aria-label="VIGIA road intelligence network">
+      {/* cloud */}
+      <path d="M 150 70 a 34 34 0 0 1 64 -12 a 30 30 0 0 1 54 18 a 26 26 0 0 1 -6 50 H 165 a 30 30 0 0 1 -15 -56 Z" {...base} fill={FAINT} />
+      {/* links from nodes to cloud */}
+      {nodes.map(([x, y], i) => <line key={i} x1={x} y1={y} x2="210" y2="120" {...base} strokeWidth="1.4" />)}
+      {/* mesh links between nodes */}
+      <line x1="90" y1="230" x2="200" y2="270" {...base} strokeWidth="1.4" />
+      <line x1="200" y1="270" x2="320" y2="235" {...base} strokeWidth="1.4" />
+      <line x1="150" y1="170" x2="270" y2="165" {...base} strokeWidth="1.4" />
+      {/* nodes (vehicles) */}
+      {nodes.map(([x, y], i) => (
+        <g key={i}>
+          <circle cx={x} cy={y} r="14" {...base} fill="#fff" />
+          <circle cx={x} cy={y} r="4" {...base} />
+        </g>
+      ))}
+    </svg>
+  );
+}
