@@ -1,6 +1,7 @@
+const GRAPHIK = "'Graphik', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, Arial, sans-serif";
 const SERIF = "'Source Serif 4', Georgia, 'Times New Roman', serif";
 
-/* small white registration square, like the Intercom editorial spotlight */
+/* small registration square, like the Intercom editorial spotlight */
 function Pin({ style }) {
   return <div style={{ position: 'absolute', width: 10, height: 10, background: '#fff', zIndex: 3, ...style }} />;
 }
@@ -11,11 +12,11 @@ export default function FeatureSpotlight({
   image,
   secondaryImage,
   flip = false,
-  bg = '#F5F2EB',
+  bg = '#F5F5F5',
   cardBgImage,
 }) {
   return (
-    <section style={{ padding: '96px 7%', background: bg, fontFamily: SERIF }}>
+    <section style={{ padding: '96px 7%', background: bg, fontFamily: GRAPHIK }}>
       <div style={{
         maxWidth: 1240, margin: '0 auto',
         display: 'grid',
@@ -27,12 +28,12 @@ export default function FeatureSpotlight({
         {/* ── Text column ───────────────────────────── */}
         <div style={{ order: flip ? 2 : 1, display: 'flex', flexDirection: 'column' }}>
           <h2 style={{
-            fontFamily: SERIF,
+            fontFamily: GRAPHIK,
             fontSize: 'clamp(2rem, 3.4vw, 2.9rem)',
-            fontWeight: 600,
-            color: '#1A1916',
-            lineHeight: 1.12,
-            letterSpacing: '-0.01em',
+            fontWeight: 700,
+            color: '#111',
+            lineHeight: 1.1,
+            letterSpacing: '-0.02em',
             margin: '0 0 24px',
           }}>
             {heading}
@@ -70,7 +71,7 @@ export default function FeatureSpotlight({
             position: 'relative',
             borderRadius: 6,
             overflow: 'hidden',
-            background: '#D6CFC5',
+            background: '#E6E6E6',
             ...(cardBgImage && {
               backgroundImage: `url(${cardBgImage})`,
               backgroundSize: 'cover',
