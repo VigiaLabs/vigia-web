@@ -53,7 +53,7 @@ export default function VoiceSection() {
 
       {/* Shader gradient background — orb-matched warm palette */}
       <div style={{ position: 'absolute', inset: 0 }}>
-        <ShaderReveal bg="#160d10">
+        <ShaderReveal bg="radial-gradient(ellipse 70% 60% at 22% 38%, #b5402a 0%, transparent 55%), radial-gradient(ellipse 64% 62% at 82% 72%, #14756c 0%, transparent 55%), #160d10">
           <ShaderGradientCanvas
             style={{ position: 'absolute', inset: 0, width: '100%', height: '100%' }}
             pointerEvents="none"
