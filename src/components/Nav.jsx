@@ -1,8 +1,17 @@
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import VigiaMark from './VigiaMark';
 
-const centerLinks = ['Product', 'Customers', 'Pricing'];
-const rightLinks = ['Log in', 'Contact sales', 'View demo'];
+const centerLinks = [
+  { label: 'Product', to: '/product' },
+  { label: 'Customers', to: '/customers' },
+  { label: 'Pricing', to: '/pricing' },
+];
+const rightLinks = [
+  { label: 'Log in', to: '/login' },
+  { label: 'Contact sales', to: '/contact-sales' },
+  { label: 'View demo', to: '/demo' },
+];
 
 export default function Nav() {
   const [scrolled, setScrolled] = useState(false);
@@ -22,30 +31,30 @@ export default function Nav() {
       display: 'flex', alignItems: 'center', gap: 40,
       transition: 'border-color 0.2s',
     }}>
-      <a href="#" style={{ display: 'flex', alignItems: 'center', gap: 10, textDecoration: 'none', color: '#000', flexShrink: 0 }}>
+      <Link to="/" style={{ display: 'flex', alignItems: 'center', gap: 10, textDecoration: 'none', color: '#000', flexShrink: 0 }}>
         <VigiaMark size={32} />
         <span style={{ fontWeight: 800, fontSize: 18, letterSpacing: '-0.02em' }}>VIGIA</span>
-      </a>
+      </Link>
 
       <div style={{ display: 'flex', gap: 28, alignItems: 'center', flex: 1 }}>
         {centerLinks.map(l => (
-          <a key={l} href="#" style={{ color: '#000', fontSize: 15, fontWeight: 400, textDecoration: 'none', whiteSpace: 'nowrap' }}>{l}</a>
+          <Link key={l.label} to={l.to} style={{ color: '#000', fontSize: 15, fontWeight: 400, textDecoration: 'none', whiteSpace: 'nowrap' }}>{l.label}</Link>
         ))}
       </div>
 
       <div style={{ display: 'flex', gap: 20, alignItems: 'center', flexShrink: 0 }}>
         {rightLinks.map(l => (
-          <a key={l} href="#" style={{ color: '#000', fontSize: 15, fontWeight: 400, textDecoration: 'none', whiteSpace: 'nowrap' }}>{l}</a>
+          <Link key={l.label} to={l.to} style={{ color: '#000', fontSize: 15, fontWeight: 400, textDecoration: 'none', whiteSpace: 'nowrap' }}>{l.label}</Link>
         ))}
-        <a href="#cta" style={{
+        <Link to="/signup" style={{
           background: '#000', color: '#fff', borderRadius: 4,
           padding: '10px 20px', fontSize: 15, fontWeight: 600, textDecoration: 'none', whiteSpace: 'nowrap',
-        }}>Start free trial</a>
-        <a href="#hardware" style={{
+        }}>Start free trial</Link>
+        <Link to="/edge-node" style={{
           background: '#fff', color: '#000', borderRadius: 4,
           padding: '9px 18px', fontSize: 15, fontWeight: 600, textDecoration: 'none',
           border: '1.5px solid #000', whiteSpace: 'nowrap',
-        }}>Edge Node →</a>
+        }}>Edge Node →</Link>
       </div>
     </nav>
   );
