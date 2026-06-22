@@ -8,8 +8,14 @@ export default function ShaderWave({
   rotationZ = -60,
   rotationY = 0,
 }) {
+  // Instant CSS approximation so the strip is never a dead black rectangle
+  const bg = `radial-gradient(ellipse 80% 80% at 20% 50%, ${color1}cc 0%, transparent 55%),
+    radial-gradient(ellipse 70% 70% at 75% 45%, ${color2}aa 0%, transparent 55%),
+    radial-gradient(ellipse 60% 60% at 55% 70%, ${color3}88 0%, transparent 55%),
+    ${color3 === '#06B6D4' ? '#030d1a' : color3 + '33'}`;
+
   return (
-    <ShaderReveal>
+    <ShaderReveal bg={bg}>
       <ShaderGradientCanvas
         style={{ position: 'absolute', inset: 0, width: '100%', height: '100%' }}
         pointerEvents="none"

@@ -1,24 +1,27 @@
 import { useState, useEffect } from 'react';
 
-/* Wraps a shader canvas — fades from transparent to opaque once on mount.
-   Uses React state (not a CSS animation) so the opacity is permanent:
-   it will never replay when the component scrolls off-screen and back. */
-export default function ShaderReveal({ children, delay = 300 }) {
+/* Renders children (WebGL shader) on top of an instant CSS fallback bg.
+   - bg: CSS background shown immediately — user sees color, never black
+   - Shader fades in over 1.1s once WebGL is ready (100ms head start)
+   - opacity is React state → permanent after first mount, never replays */
+export default function ShaderReveal({ children, bg = '#09090B', delay = 100 }) {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
     const t = setTimeout(() => setVisible(true), delay);
     return () => clearTimeout(t);
-  }, []); // empty deps — runs once, state persists for component lifetime
+  }, []);
 
   return (
-    <div style={{
-      position: 'absolute', inset: 0,
-      opacity: visible ? 1 : 0,
-      transition: 'opacity 0.9s ease',
-      willChange: 'opacity',
-    }}>
-      {children}
+    <div style={{ position: 'absolute', inset: 0, background: bg }}>
+      <div style={{
+        position: 'absolute', inset: 0,
+        opacity: visible ? 1 : 0,
+        transition: 'opacity 1.1s ease',
+        willChange: 'opacity',
+      }}>
+        {children}
+      </div>
     </div>
   );
 }

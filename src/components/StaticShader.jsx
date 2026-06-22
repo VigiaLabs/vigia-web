@@ -9,9 +9,16 @@ export default function StaticShader({
   rotationY = 0,
   positionY = 1.6,
   cameraZoom = 9.1,
+  fallbackBg,   // CSS background shown instantly while WebGL warms up
 }) {
+  // Build a radial-gradient approximation from the shader colors if no
+  // explicit fallback is provided — keeps the card colorful from frame 0
+  const bg = fallbackBg ?? `radial-gradient(ellipse 80% 70% at 20% 60%, ${color1}cc 0%, transparent 60%),
+    radial-gradient(ellipse 70% 60% at 80% 30%, ${color2}aa 0%, transparent 60%),
+    ${color3}`;
+
   return (
-    <ShaderReveal>
+    <ShaderReveal bg={bg}>
       <ShaderGradientCanvas
         style={{ position: 'absolute', inset: 0, width: '100%', height: '100%' }}
         pointerEvents="none"
