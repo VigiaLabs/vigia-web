@@ -1,25 +1,26 @@
+import { Suspense, lazy } from 'react';
+const StaticShader = lazy(() => import('./StaticShader'));
+
 const cards = [
   {
     title: 'Detect',
     desc: 'AI-powered edge sensors identify potholes, cracks, and hazards in real time — before they cause accidents.',
     cta: 'Learn about detection →',
-    bg: 'radial-gradient(ellipse 80% 70% at 20% 60%, rgba(50,107,255,0.9) 0%, transparent 60%), radial-gradient(ellipse 70% 60% at 80% 25%, rgba(6,182,212,0.75) 0%, transparent 60%), radial-gradient(ellipse 100% 100% at 50% 80%, #030b1a 0%, #050518 100%)',
+    shader: { color1: '#326BFF', color2: '#06B6D4', color3: '#03050f', rotationZ: -40, rotationY: 10 },
   },
   {
     title: 'Protect',
     desc: 'Instant BLE alerts warn drivers and fleet operators of road hazards up to 300m ahead.',
     cta: 'See how it works →',
-    bg: 'radial-gradient(ellipse 80% 70% at 70% 35%, rgba(155,81,224,0.9) 0%, transparent 60%), radial-gradient(ellipse 70% 60% at 20% 70%, rgba(50,107,255,0.75) 0%, transparent 60%), radial-gradient(ellipse 100% 100% at 50% 80%, #0d0520 0%, #0a0318 100%)',
+    shader: { color1: '#9B51E0', color2: '#326BFF', color3: '#0d0520', rotationZ: 20, rotationY: -10 },
   },
   {
     title: 'Earn',
     desc: 'Community members earn credits for hosting VIGIA nodes. Turn civic data into income.',
     cta: 'Join the network →',
-    bg: 'radial-gradient(ellipse 80% 70% at 30% 30%, rgba(16,185,129,0.85) 0%, transparent 60%), radial-gradient(ellipse 70% 60% at 75% 65%, rgba(6,182,212,0.8) 0%, transparent 60%), radial-gradient(ellipse 100% 100% at 50% 90%, #011510 0%, #021018 100%)',
+    shader: { color1: '#10B981', color2: '#06B6D4', color3: '#011510', rotationZ: 60, rotationY: -5 },
   },
 ];
-
-const grain = `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.15'/%3E%3C/svg%3E")`;
 
 export default function SolutionCards() {
   return (
@@ -36,22 +37,18 @@ export default function SolutionCards() {
             <div key={card.title} style={{
               position: 'relative', borderRadius: 16,
               overflow: 'hidden', minHeight: 340,
-              background: card.bg,
+              background: '#09090B',
             }}>
-              {/* Grain texture */}
-              <div style={{
-                position: 'absolute', inset: 0,
-                backgroundImage: grain,
-                backgroundSize: '200px 200px',
-                opacity: 0.35,
-                mixBlendMode: 'overlay',
-                pointerEvents: 'none',
-              }} />
-              {/* Content */}
+              {/* Static shader gradient background */}
+              <Suspense fallback={<div style={{ position: 'absolute', inset: 0, background: '#09090B' }} />}>
+                <StaticShader {...card.shader} positionY={1.2} cameraZoom={8} />
+              </Suspense>
+
+              {/* Content overlay */}
               <div style={{
                 position: 'relative', zIndex: 1,
                 padding: '40px 32px',
-                background: 'linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(0,0,0,0.55) 100%)',
+                background: 'linear-gradient(180deg, rgba(0,0,0,0) 30%, rgba(0,0,0,0.6) 100%)',
                 minHeight: 340,
                 display: 'flex', flexDirection: 'column', justifyContent: 'flex-end',
                 boxSizing: 'border-box',
