@@ -2,16 +2,8 @@ function CornerSquare({ style }) {
   return <div style={{ width: 10, height: 10, background: '#C8C2BA', ...style }} />;
 }
 
-export default function FeatureSpotlight({ heading, body, image, flip = false, bg = '#fff', bgImage }) {
-  const sectionStyle = {
-    padding: '80px 7%',
-    background: bg,
-    ...(bgImage && {
-      backgroundImage: `url(${bgImage})`,
-      backgroundSize: 'cover',
-      backgroundPosition: 'center',
-    }),
-  };
+export default function FeatureSpotlight({ heading, body, image, flip = false, bg = '#fff', cardBgImage }) {
+  const sectionStyle = { padding: '80px 7%', background: bg };
 
   return (
     <section style={sectionStyle}>
@@ -52,6 +44,11 @@ export default function FeatureSpotlight({ heading, body, image, flip = false, b
             borderRadius: 14,
             overflow: 'hidden',
             background: '#D6CFC5',
+            ...(cardBgImage && {
+              backgroundImage: `url(${cardBgImage})`,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+            }),
             boxShadow: '0 2px 32px rgba(0,0,0,0.10)',
             minHeight: 400,
             display: 'flex',

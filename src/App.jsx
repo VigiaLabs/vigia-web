@@ -44,7 +44,7 @@ export default function App() {
         body="VIGIA's edge AI runs on-device, processing road data in under 50 ms. No cloud dependency. No latency. Just instant, accurate detection that keeps drivers safe."
         image={<DarkFrame><HazardMockup /></DarkFrame>}
         bg="#fff"
-        bgImage="/cloud-bg.jpg"
+        cardBgImage="/cloud-bg.jpg"
       />
       <FeatureSpotlight
         heading="Real-time alerts before you reach the danger."
