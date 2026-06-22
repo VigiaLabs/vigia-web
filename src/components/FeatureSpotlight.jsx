@@ -1,11 +1,20 @@
-/* Corner square accent — matches Intercom's decorative detail */
 function CornerSquare({ style }) {
   return <div style={{ width: 10, height: 10, background: '#C8C2BA', ...style }} />;
 }
 
-export default function FeatureSpotlight({ heading, body, image, flip = false, bg = '#EDE8E1' }) {
+export default function FeatureSpotlight({ heading, body, image, flip = false, bg = '#fff', bgImage }) {
+  const sectionStyle = {
+    padding: '80px 7%',
+    background: bg,
+    ...(bgImage && {
+      backgroundImage: `url(${bgImage})`,
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
+    }),
+  };
+
   return (
-    <section style={{ background: bg, padding: '80px 7%' }}>
+    <section style={sectionStyle}>
       <div style={{
         maxWidth: 1290, margin: '0 auto',
         display: 'grid',
@@ -13,8 +22,6 @@ export default function FeatureSpotlight({ heading, body, image, flip = false, b
         gap: 80,
         alignItems: 'center',
       }}>
-
-        {/* Text — always rendered in DOM order, flip handled by grid reversal */}
         <div style={{ order: flip ? 2 : 1 }}>
           <h2 style={{
             fontSize: 'clamp(1.8rem, 3vw, 2.6rem)',
@@ -36,15 +43,11 @@ export default function FeatureSpotlight({ heading, body, image, flip = false, b
           </p>
         </div>
 
-        {/* Mockup frame with corner accents */}
         <div style={{ order: flip ? 1 : 2, position: 'relative' }}>
-          {/* Corner accents */}
           <CornerSquare style={{ position: 'absolute', top: -1, left: -1, zIndex: 2 }} />
           <CornerSquare style={{ position: 'absolute', top: -1, right: -1, zIndex: 2 }} />
           <CornerSquare style={{ position: 'absolute', bottom: -1, left: -1, zIndex: 2 }} />
           <CornerSquare style={{ position: 'absolute', bottom: -1, right: -1, zIndex: 2 }} />
-
-          {/* Mockup card */}
           <div style={{
             borderRadius: 14,
             overflow: 'hidden',
@@ -58,7 +61,6 @@ export default function FeatureSpotlight({ heading, body, image, flip = false, b
             {image || <div style={{ color: '#999', fontSize: 15, padding: 48 }}>[Mockup]</div>}
           </div>
         </div>
-
       </div>
     </section>
   );
