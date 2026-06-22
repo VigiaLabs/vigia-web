@@ -2,7 +2,7 @@ import AnnouncementBar from './components/AnnouncementBar';
 import Nav from './components/Nav';
 import Hero from './components/Hero';
 import LogoSection from './components/LogoSection';
-import SolutionCards from './components/SolutionCards';
+import PlatformSection from './components/PlatformSection';
 import FeatureSpotlight from './components/FeatureSpotlight';
 import VoiceSection from './components/VoiceSection';
 import Testimonial from './components/Testimonial';
@@ -40,7 +40,7 @@ export default function App() {
       <Nav />
       <Hero />
       <LogoSection />
-      <SolutionCards />
+      <PlatformSection />
       <FeatureSpotlight
         heading="AI-powered hazard detection on every road."
         body="VIGIA's edge AI runs on-device, processing road data in under 50 ms. No cloud dependency. No latency. Just instant, accurate detection that keeps drivers safe."
