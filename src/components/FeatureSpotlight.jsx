@@ -16,13 +16,16 @@ export default function FeatureSpotlight({
   cardBgImage,
 }) {
   return (
-    <section style={{ padding: '96px 7%', background: bg, fontFamily: GRAPHIK }}>
+    <section style={{ padding: '44px 7%', background: '#fff', fontFamily: GRAPHIK }}>
       <div style={{
         maxWidth: 1240, margin: '0 auto',
+        border: '1px solid #E5E5E5', borderRadius: 24, background: bg,
+        padding: 'clamp(40px, 5vw, 72px)',
         display: 'grid',
         gridTemplateColumns: flip ? '1.05fr 0.95fr' : '0.95fr 1.05fr',
-        gap: 80,
+        gap: 'clamp(40px, 5vw, 72px)',
         alignItems: 'center',
+        boxSizing: 'border-box',
       }}>
 
         {/* ── Text column ───────────────────────────── */}
