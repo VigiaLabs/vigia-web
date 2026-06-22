@@ -13,16 +13,6 @@ const lenis = new Lenis({
 function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
 requestAnimationFrame(raf)
 
-// Pre-warm: during browser idle time, kick off the Three.js + StaticShader
-// chunk download so it's cached before the user scrolls to it.
-// Falls back to a short timeout on browsers without rIC support.
-const preload = () => import('./components/StaticShader.jsx');
-if ('requestIdleCallback' in window) {
-  requestIdleCallback(preload, { timeout: 2000 });
-} else {
-  setTimeout(preload, 1500);
-}
-
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <App />

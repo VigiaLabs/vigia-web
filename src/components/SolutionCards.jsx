@@ -1,24 +1,21 @@
-import { Suspense, lazy } from 'react';
-const StaticShader = lazy(() => import('./StaticShader'));
-
 const cards = [
   {
     title: 'Detect',
     desc: 'AI-powered edge sensors identify potholes, cracks, and hazards in real time — before they cause accidents.',
     cta: 'Learn about detection →',
-    shader: { color1: '#326BFF', color2: '#06B6D4', color3: '#03050f', rotationZ: -40, rotationY: 10 },
+    img: '/shaders/detection.webp',
   },
   {
     title: 'Protect',
     desc: 'Instant BLE alerts warn drivers and fleet operators of road hazards up to 300m ahead.',
     cta: 'See how it works →',
-    shader: { color1: '#9B51E0', color2: '#326BFF', color3: '#0d0520', rotationZ: 20, rotationY: -10 },
+    img: '/shaders/voice.webp',
   },
   {
     title: 'Earn',
     desc: 'Community members earn credits for hosting VIGIA nodes. Turn civic data into income.',
     cta: 'Join the network →',
-    shader: { color1: '#10B981', color2: '#06B6D4', color3: '#011510', rotationZ: 60, rotationY: -5 },
+    img: '/shaders/earn.webp',
   },
 ];
 
@@ -39,10 +36,12 @@ export default function SolutionCards() {
               overflow: 'hidden', minHeight: 340,
               background: '#09090B',
             }}>
-              {/* Static shader gradient background */}
-              <Suspense fallback={<div style={{ position: 'absolute', inset: 0, background: '#09090B' }} />}>
-                <StaticShader {...card.shader} positionY={1.2} cameraZoom={8} />
-              </Suspense>
+              {/* Pre-rendered shader still — instant, no WebGL */}
+              <img
+                src={card.img}
+                alt=""
+                style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }}
+              />
 
               {/* Content overlay */}
               <div style={{

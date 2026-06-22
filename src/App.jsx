@@ -4,6 +4,7 @@ import Hero from './components/Hero';
 import LogoSection from './components/LogoSection';
 import SolutionCards from './components/SolutionCards';
 import FeatureSpotlight from './components/FeatureSpotlight';
+import Testimonial from './components/Testimonial';
 import Pricing from './components/Pricing';
 import CTA from './components/CTA';
 import Footer from './components/Footer';
@@ -33,7 +34,7 @@ function DarkFrame({ children }) {
 
 export default function App() {
   return (
-    <div style={{ fontFamily: 'Inter, Helvetica, Arial, sans-serif' }}>
+    <div style={{ fontFamily: "'Graphik', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, Arial, sans-serif" }}>
       <AnnouncementBar />
       <Nav />
       <Hero />
@@ -43,22 +44,26 @@ export default function App() {
         heading="AI-powered hazard detection on every road."
         body="VIGIA's edge AI runs on-device, processing road data in under 50 ms. No cloud dependency. No latency. Just instant, accurate detection that keeps drivers safe."
         image={<DarkFrame><HazardMockup /></DarkFrame>}
-        bg="#fff"
+        bg="#F5F2EB"
         cardBgImage="/cloud-bg.jpg"
+        secondaryImage="/sec-road.jpg"
       />
       <FeatureSpotlight
         heading="Real-time alerts before you reach the danger."
         body="The VIGIA voice copilot broadcasts hazard alerts over BLE to drivers up to 300 m ahead. Conversational, context-aware, and always on — even without internet."
         image={<DarkFrame><CopilotMockup /></DarkFrame>}
         flip={true}
-        bg="#E8E2D8"
+        bg="#EFEBE2"
+        secondaryImage="/sec-alert.jpg"
       />
       <FeatureSpotlight
         heading="Turn your daily drive into real income."
         body="Host a VIGIA node and earn $VGA credits for every kilometre of verified road data you contribute. A new model for civic participation — and a new revenue stream for drivers."
         image={<DarkFrame><EarningsMockup /></DarkFrame>}
-        bg="#EDE8E1"
+        bg="#F5F2EB"
+        secondaryImage="/sec-earn.jpg"
       />
+      <Testimonial />
       <Pricing />
       <CTA />
       <Footer />

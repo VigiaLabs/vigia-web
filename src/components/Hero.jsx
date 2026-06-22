@@ -1,30 +1,19 @@
-import { Suspense, lazy, useState } from 'react';
+import { useState } from 'react';
 import ShaderWave from './ShaderWave';          // eager — loads with page
-const StaticShader = lazy(() => import('./StaticShader')); // lazy — below fold
 
 function BlueSquare({ style }) {
   return <div style={{ width: 14, height: 14, background: '#326BFF', ...style }} />;
 }
 
 /* ── Feature tab carousel ─────────────────────────────── */
+/* Each tab shows a pre-rendered still of its shader (public/shaders/*.webp)
+   — instant, ~100 KB, no WebGL. */
 
 const tabs = [
-  {
-    label: 'Real-time Detection',
-    shader: { color1: '#326BFF', color2: '#06B6D4', color3: '#03050f', rotationZ: -40, rotationY: 10 },
-  },
-  {
-    label: 'Voice Copilot',
-    shader: { color1: '#9B51E0', color2: '#326BFF', color3: '#0d0520', rotationZ: 20, rotationY: -10 },
-  },
-  {
-    label: 'Road Intelligence',
-    shader: { color1: '#06B6D4', color2: '#0EA5E9', color3: '#021018', rotationZ: 0, rotationY: 5 },
-  },
-  {
-    label: 'Earn $VGA',
-    shader: { color1: '#10B981', color2: '#06B6D4', color3: '#011510', rotationZ: 60, rotationY: -5 },
-  },
+  { label: 'Real-time Detection', img: '/shaders/detection.webp' },
+  { label: 'Voice Copilot',       img: '/shaders/voice.webp' },
+  { label: 'Road Intelligence',   img: '/shaders/road.webp' },
+  { label: 'Earn $VGA',           img: '/shaders/earn.webp' },
 ];
 
 function FeatureCarousel() {
@@ -64,16 +53,21 @@ function FeatureCarousel() {
         ))}
       </div>
 
-      {/* Full-width static shader panel */}
+      {/* Full-width shader still */}
       <div style={{ position: 'relative', height: 480, overflow: 'hidden', background: '#09090B' }}>
-        <Suspense fallback={<div style={{ width: '100%', height: '100%', background: '#09090B' }} />}>
-          <StaticShader
-            key={active}
-            {...tabs[active].shader}
-            positionY={1.4}
-            cameraZoom={9.5}
+        {tabs.map((tab, i) => (
+          <img
+            key={tab.label}
+            src={tab.img}
+            alt=""
+            style={{
+              position: 'absolute', inset: 0,
+              width: '100%', height: '100%', objectFit: 'cover',
+              opacity: i === active ? 1 : 0,
+              transition: 'opacity 0.5s ease',
+            }}
           />
-        </Suspense>
+        ))}
         {/* Tab label overlay bottom-left */}
         <div style={{
           position: 'absolute', bottom: 40, left: 56, zIndex: 2,
