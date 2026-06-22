@@ -1,6 +1,6 @@
 import { Suspense, lazy, useState } from 'react';
-const ShaderWave = lazy(() => import('./ShaderWave'));
-const StaticShader = lazy(() => import('./StaticShader'));
+import ShaderWave from './ShaderWave';          // eager — loads with page
+const StaticShader = lazy(() => import('./StaticShader')); // lazy — below fold
 
 function BlueSquare({ style }) {
   return <div style={{ width: 14, height: 14, background: '#326BFF', ...style }} />;
@@ -131,11 +131,9 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* ShaderGradient wave strip */}
-      <div style={{ position: 'relative', height: 360, width: '100%', overflow: 'hidden', marginTop: -64 }}>
-        <Suspense fallback={<div style={{ width: '100%', height: '100%', background: '#09090B' }} />}>
-          <ShaderWave />
-        </Suspense>
+      {/* ShaderGradient wave strip — eager loaded, no Suspense needed */}
+      <div style={{ position: 'relative', height: 360, width: '100%', overflow: 'hidden', marginTop: -64, background: '#09090B' }}>
+        <ShaderWave />
       </div>
 
       {/* Feature carousel — full width */}

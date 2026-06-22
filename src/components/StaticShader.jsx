@@ -13,6 +13,7 @@ export default function StaticShader({
     <ShaderGradientCanvas
       style={{ position: 'absolute', inset: 0, width: '100%', height: '100%' }}
       pointerEvents="none"
+      className="shader-fade"
     >
       <ShaderGradient
         type="waterPlane"
