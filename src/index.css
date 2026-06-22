@@ -53,6 +53,21 @@ body {
   animation: shaderFadeIn 1s ease 0.35s both;
 }
 
+/* ── Ruled grid frame (Mistral/Cartesia "lined boxes") ──────────────
+   A centred column bounded by vertical hairlines, with horizontal
+   hairlines dividing each section into sharp-cornered cells. */
+.ruled-frame {
+  max-width: 1280px;
+  margin: 0 auto;
+  background: #fff;
+  border-left: 1px solid var(--rule, #E6E6E6);
+  border-right: 1px solid var(--rule, #E6E6E6);
+}
+.ruled-frame section {
+  border-bottom: 1px solid var(--rule, #E6E6E6);
+}
+:root { --rule: #E6E6E6; }
+
 /* ── AI Orb (web port of vigia-android AiOrbComponent) ───────────────
    Siri-style dark glossy sphere with counter-rotating pink→violet→blue
    rim lights and a breathing scale. Colors from VigiaColors.kt. */

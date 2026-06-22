@@ -1,12 +1,7 @@
 export default function Testimonial() {
   return (
-    <section style={{ background: '#fff', padding: '44px 7%' }}>
-      <div style={{
-        maxWidth: 1100, margin: '0 auto',
-        border: '1px solid #E5E5E5', borderRadius: 24, background: '#F5F5F5',
-        padding: 'clamp(48px, 6vw, 88px)', boxSizing: 'border-box',
-      }}>
-      <div style={{ maxWidth: 760, margin: '0 auto', textAlign: 'center' }}>
+    <section style={{ background: '#fff', padding: '100px 7%' }}>
+      <div style={{ maxWidth: 900, margin: '0 auto', textAlign: 'center' }}>
         <blockquote style={{
           fontFamily: "'Graphik', sans-serif",
           fontSize: 'clamp(1.5rem, 3vw, 2.25rem)',
@@ -53,7 +48,6 @@ export default function Testimonial() {
             </div>
           ))}
         </div>
-      </div>
       </div>
     </section>
   );

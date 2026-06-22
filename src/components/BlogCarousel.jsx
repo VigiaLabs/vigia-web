@@ -67,10 +67,9 @@ export default function BlogCarousel() {
   }
 
   return (
-    <section style={{ background: '#fff', padding: '44px 7%', fontFamily: GRAPHIK }}>
-     <div style={{ maxWidth: 1240, margin: '0 auto', border: '1px solid #E5E5E5', borderRadius: 24, background: '#F5F5F5', padding: '44px 0', boxSizing: 'border-box', overflow: 'hidden' }}>
+    <section style={{ background: '#fff', padding: '80px 0 90px', fontFamily: GRAPHIK }}>
       {/* heading row */}
-      <div style={{ padding: '0 44px', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: 28 }}>
+      <div style={{ maxWidth: 1240, margin: '0 auto', padding: '0 7%', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: 32 }}>
         <h2 style={{ fontSize: 'clamp(1.7rem, 3vw, 2.4rem)', fontWeight: 700, color: '#111', letterSpacing: '-0.02em', margin: 0 }}>
           Latest from the <span style={{ color: '#326BFF' }}>VIGIA blog</span>
         </h2>
@@ -83,7 +82,7 @@ export default function BlogCarousel() {
         onScroll={onScroll}
         style={{
           display: 'flex', gap: 24, overflowX: 'auto', scrollSnapType: 'x mandatory',
-          padding: '0 44px', scrollbarWidth: 'none', scrollPaddingLeft: '44px',
+          padding: '0 7%', scrollbarWidth: 'none', scrollPaddingLeft: '7%',
         }}
       >
         {posts.map((p) => (
@@ -129,12 +128,12 @@ export default function BlogCarousel() {
             </div>
           </a>
         ))}
-        <div style={{ flex: '0 0 20px' }} aria-hidden />
+        <div style={{ flex: '0 0 7%' }} aria-hidden />
       </div>
 
       {/* dots + arrows */}
-      <div style={{ padding: '28px 44px 0', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-        <div style={{ display: 'flex', gap: 8, alignItems: 'center', background: '#fff', border: '1px solid #E7E7E7', padding: '10px 16px', borderRadius: 12 }}>
+      <div style={{ maxWidth: 1240, margin: '0 auto', padding: '28px 7% 0', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+        <div style={{ display: 'flex', gap: 8, background: '#F2F2F2', padding: '10px 16px', borderRadius: 12 }}>
           {posts.map((_, i) => (
             <button
               key={i}
@@ -165,7 +164,6 @@ export default function BlogCarousel() {
           ))}
         </div>
       </div>
-     </div>
     </section>
   );
 }

@@ -53,7 +53,7 @@ export default function PlatformSection() {
           </h2>
 
           {/* segmented tabs */}
-          <div style={{ display: 'inline-flex', border: '1px solid #E2E2E2', borderRadius: 10, overflow: 'hidden', background: '#fff' }}>
+          <div style={{ display: 'inline-flex', border: '1px solid #E2E2E2', borderRadius: 0, overflow: 'hidden', background: '#fff' }}>
             {tabs.map((tb, i) => (
               <button
                 key={tb.tab}
@@ -77,7 +77,7 @@ export default function PlatformSection() {
 
         {/* Big bordered box */}
         <div style={{
-          border: '1px solid #E7E7E7', borderRadius: 18, background: '#F5F5F5',
+          border: '1px solid #E6E6E6', borderRadius: 0, background: '#FAFAFA',
           padding: 0, overflow: 'hidden',
           display: 'grid', gridTemplateColumns: '0.85fr 1.15fr',
         }}>

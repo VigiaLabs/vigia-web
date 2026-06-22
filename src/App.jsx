@@ -30,19 +30,21 @@ export default function App() {
       <ScrollToTop />
       <AnnouncementBar />
       <Nav />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/product" element={<Product />} />
-        <Route path="/customers" element={<Customers />} />
-        <Route path="/pricing" element={<PricingPage />} />
-        <Route path="/edge-node" element={<EdgeNode />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/contact-sales" element={<ContactSales />} />
-        <Route path="/demo" element={<Demo />} />
-        <Route path="*" element={<Home />} />
-      </Routes>
-      <Footer />
+      <div className="ruled-frame">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/product" element={<Product />} />
+          <Route path="/customers" element={<Customers />} />
+          <Route path="/pricing" element={<PricingPage />} />
+          <Route path="/edge-node" element={<EdgeNode />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/contact-sales" element={<ContactSales />} />
+          <Route path="/demo" element={<Demo />} />
+          <Route path="*" element={<Home />} />
+        </Routes>
+        <Footer />
+      </div>
     </div>
   );
 }

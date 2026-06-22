@@ -23,7 +23,7 @@ export default function Home() {
         heading="AI-powered hazard detection on every road."
         body="VIGIA's edge AI runs on-device, processing road data in under 50 ms. No cloud dependency. No latency. Just instant, accurate detection that keeps drivers safe."
         image={<DarkFrame><HazardMockup /></DarkFrame>}
-        bg="#F5F5F5"
+        bg="#fff"
         cardBgImage="/cloud-bg.jpg"
         secondaryImage="/sec-road.jpg"
       />
@@ -32,14 +32,14 @@ export default function Home() {
         body="The VIGIA voice copilot broadcasts hazard alerts over BLE to drivers up to 300 m ahead. Conversational, context-aware, and always on — even without internet."
         image={<DarkFrame><CopilotMockup /></DarkFrame>}
         flip={true}
-        bg="#F5F5F5"
+        bg="#fff"
         secondaryImage="/sec-alert.jpg"
       />
       <FeatureSpotlight
         heading="Turn your daily drive into real income."
         body="Host a VIGIA node and earn $VGA credits for every kilometre of verified road data you contribute. A new model for civic participation — and a new revenue stream for drivers."
         image={<DarkFrame><EarningsMockup /></DarkFrame>}
-        bg="#F5F5F5"
+        bg="#fff"
         secondaryImage="/sec-earn.jpg"
       />
       <VoiceSection />

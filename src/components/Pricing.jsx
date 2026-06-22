@@ -76,7 +76,7 @@ export default function Pricing() {
           <p style={{ fontSize: 18, color: '#A0A0A0', margin: 0 }}>Start free. Scale as your fleet grows.</p>
         </div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 0, border: '1px solid #E7E7E7', borderRadius: 8, overflow: 'hidden' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 0, border: '1px solid #E6E6E6', borderRadius: 0, overflow: 'hidden' }}>
           {plans.map((plan, i) => (
             <div key={plan.name} style={{
               display: 'flex', flexDirection: 'column',

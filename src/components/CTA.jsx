@@ -10,12 +10,7 @@ export default function CTA() {
   }
 
   return (
-    <section style={{ background: '#fff', padding: '44px 7% 80px', textAlign: 'center' }}>
-      <div style={{
-        maxWidth: 1240, margin: '0 auto',
-        background: '#000', borderRadius: 24,
-        padding: 'clamp(64px, 8vw, 110px) 7%', boxSizing: 'border-box',
-      }}>
+    <section style={{ background: '#000', padding: '120px 7%', textAlign: 'center' }}>
       <div style={{ maxWidth: 640, margin: '0 auto' }}>
         <h2 style={{
           fontSize: 'clamp(2rem, 5vw, 3.5rem)',
@@ -66,7 +61,6 @@ export default function CTA() {
         <p style={{ fontSize: 13, color: 'rgba(255,255,255,0.35)', marginTop: 16 }}>
           No credit card required &mdash; free to start.
         </p>
-      </div>
       </div>
     </section>
   );
