@@ -40,26 +40,23 @@ export default function App() {
       <LogoSection />
       <SolutionCards />
       <FeatureSpotlight
-        eyebrow="Hazard Detection"
-        heading="Spot every pothole, crack, and hazard — automatically."
+        heading="AI-powered hazard detection on every road."
         body="VIGIA's edge AI runs on-device, processing road data in under 50 ms. No cloud dependency. No latency. Just instant, accurate detection that keeps drivers safe."
         image={<DarkFrame><HazardMockup /></DarkFrame>}
-        bg="#fff"
+        bg="#EDE8E1"
       />
       <FeatureSpotlight
-        eyebrow="Voice Copilot"
         heading="Real-time alerts before you reach the danger."
         body="The VIGIA voice copilot broadcasts hazard alerts over BLE to drivers up to 300 m ahead. Conversational, context-aware, and always on — even without internet."
         image={<DarkFrame><CopilotMockup /></DarkFrame>}
         flip={true}
-        bg="#F5F5F5"
+        bg="#E8E2D8"
       />
       <FeatureSpotlight
-        eyebrow="Community Earnings"
         heading="Turn your daily drive into real income."
         body="Host a VIGIA node and earn $VGA credits for every kilometre of verified road data you contribute. A new model for civic participation — and a new revenue stream for drivers."
         image={<DarkFrame><EarningsMockup /></DarkFrame>}
-        bg="#fff"
+        bg="#EDE8E1"
       />
       <Pricing />
       <CTA />

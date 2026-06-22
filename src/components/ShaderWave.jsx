@@ -1,4 +1,5 @@
 import { ShaderGradientCanvas, ShaderGradient } from '@shadergradient/react'
+import ShaderReveal from './ShaderReveal'
 
 export default function ShaderWave({
   color1 = '#326BFF',
@@ -8,40 +9,41 @@ export default function ShaderWave({
   rotationY = 0,
 }) {
   return (
-    <ShaderGradientCanvas
-      style={{ position: 'absolute', inset: 0, width: '100%', height: '100%' }}
-      pointerEvents="none"
-      className="shader-fade"
-    >
-      <ShaderGradient
-        type="waterPlane"
-        animate="on"
-        uTime={0.2}
-        uSpeed={0.25}
-        uStrength={2.2}
-        uDensity={1.4}
-        uFrequency={5.0}
-        uAmplitude={2.8}
-        positionX={0}
-        positionY={1.6}
-        positionZ={0}
-        rotationX={45}
-        rotationY={rotationY}
-        rotationZ={rotationZ}
-        color1={color1}
-        color2={color2}
-        color3={color3}
-        reflection={0.1}
-        wireframe={false}
-        shader="defaults"
-        lightType="3d"
-        envPreset="city"
-        grain="on"
-        cAzimuthAngle={180}
-        cPolarAngle={80}
-        cDistance={3.5}
-        cameraZoom={9.1}
-      />
-    </ShaderGradientCanvas>
+    <ShaderReveal>
+      <ShaderGradientCanvas
+        style={{ position: 'absolute', inset: 0, width: '100%', height: '100%' }}
+        pointerEvents="none"
+      >
+        <ShaderGradient
+          type="waterPlane"
+          animate="on"
+          uTime={0.2}
+          uSpeed={0.25}
+          uStrength={2.2}
+          uDensity={1.4}
+          uFrequency={5.0}
+          uAmplitude={2.8}
+          positionX={0}
+          positionY={1.6}
+          positionZ={0}
+          rotationX={45}
+          rotationY={rotationY}
+          rotationZ={rotationZ}
+          color1={color1}
+          color2={color2}
+          color3={color3}
+          reflection={0.1}
+          wireframe={false}
+          shader="defaults"
+          lightType="3d"
+          envPreset="city"
+          grain="on"
+          cAzimuthAngle={180}
+          cPolarAngle={80}
+          cDistance={3.5}
+          cameraZoom={9.1}
+        />
+      </ShaderGradientCanvas>
+    </ShaderReveal>
   )
 }
