@@ -3,41 +3,28 @@ import { useRef, useState } from 'react';
 const GRAPHIK = "'Graphik', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, Arial, sans-serif";
 const MONO = "'JetBrains Mono', ui-monospace, monospace";
 
-/* Blog posts live on Hashnode; each `url` points at the published post.
-   Swap these for the real Hashnode permalinks (or fetch them at build time
-   via the Hashnode GraphQL API — https://gql.hashnode.com). */
+/* Live posts from ridingbluewaves.hashnode.dev — sorted newest first */
 const posts = [
   {
     category: 'HACKATHON',
-    title: 'Our plans for IITM Road Safety Hackathon 2026',
-    excerpt: 'How VIGIA is preparing its edge-AI perception stack for India’s premier road-safety hackathon.',
+    title: 'Why We Built VIGIASearch for the IIT Madras Road Safety Hackathon 2026',
+    excerpt: 'An AI platform that aggregates fragmented government road data to give citizens real-time, accurate information about road conditions across India.',
     img: '/shaders/detection.webp',
-    dark: true,
-    url: '#',
-  },
-  {
-    category: 'SAMSUNG SFT',
-    title: 'Our plans for SFT 2026 India',
-    excerpt: 'Bringing on-device ADAS and DePIN road intelligence to Samsung Solve for Tomorrow.',
-    img: '/cloud-bg.jpg',
-    dark: false,
-    url: '#',
-  },
-  {
-    category: 'DEPIN NETWORK',
-    title: 'Building the first road-intelligence DePIN',
-    excerpt: 'Why every kilometre you drive should make the next driver safer — and pay you back.',
-    img: '/sec-road.jpg',
-    dark: true,
-    url: '#',
+    url: 'https://ridingbluewaves.hashnode.dev/from-hackathon-prototype-to-safer-roads-why-we-built-vigiasearch-for-the-iit-madras-road-safety-hackathon-2026',
   },
   {
     category: 'ENGINEERING',
-    title: 'Sub-50 ms hazard detection on a Raspberry Pi',
-    excerpt: 'The edge-inference tricks behind VIGIA’s real-time perception pipeline.',
-    img: '/shaders/earn.webp',
-    dark: true,
-    url: '#',
+    title: 'Riding the Blue Wave: Building Autonomous Intelligence on the Edge #02',
+    excerpt: 'Real-time autonomous perception on edge devices requires async multi-threaded architecture — not every model needs to run on every frame.',
+    img: 'https://cdn.hashnode.com/uploads/covers/697a3a7c4b19a21e89e9cf6f/ad7898f6-4e3e-4799-b71e-197105cfaf2e.png',
+    url: 'https://ridingbluewaves.hashnode.dev/riding-the-blue-wave-building-autonomous-intelligence-on-the-edge-02',
+  },
+  {
+    category: 'ENGINEERING',
+    title: 'Riding the Blue Wave: Building Autonomous Intelligence on the Edge #01',
+    excerpt: 'How to build real-time hazard detection on a Raspberry Pi 4 — starting with system architecture, not models.',
+    img: 'https://cdn.hashnode.com/res/hashnode/image/upload/v1770385171031/2c793900-1b95-43ac-8e81-bc52e2f68d0c.png',
+    url: 'https://ridingbluewaves.hashnode.dev/riding-the-blue-wave-building-autonomous-intelligence-on-the-edge-01',
   },
 ];
 
@@ -73,7 +60,7 @@ export default function BlogCarousel() {
         <h2 style={{ fontSize: 'clamp(1.7rem, 3vw, 2.4rem)', fontWeight: 700, color: '#111', letterSpacing: '-0.02em', margin: 0 }}>
           Latest from the <span style={{ color: '#326BFF' }}>VIGIA blog</span>
         </h2>
-        <a href="#" style={{ fontSize: 15, fontWeight: 600, color: '#111', textDecoration: 'none', whiteSpace: 'nowrap' }}>View all &rarr;</a>
+        <a href="https://ridingbluewaves.hashnode.dev" target="_blank" rel="noopener noreferrer" style={{ fontSize: 15, fontWeight: 600, color: '#111', textDecoration: 'none', whiteSpace: 'nowrap' }}>View all &rarr;</a>
       </div>
 
       {/* scroller */}
