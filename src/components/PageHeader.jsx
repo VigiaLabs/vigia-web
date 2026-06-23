@@ -26,7 +26,7 @@ export default function PageHeader({
           <p style={{
             fontFamily: MONO, fontSize: 12, fontWeight: 500,
             letterSpacing: '0.12em', textTransform: 'uppercase',
-            color: '#326BFF', margin: '0 0 20px',
+            color: '#888', margin: '0 0 20px',
           }}>{eyebrow}</p>
         )}
         <h1 style={{

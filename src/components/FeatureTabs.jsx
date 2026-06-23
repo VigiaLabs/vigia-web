@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import HazardMockup from './mockups/HazardMockup'
 import CopilotMockup from './mockups/CopilotMockup'
@@ -44,24 +44,48 @@ const tabs = [
   { id: 'earn', label: 'Earn $VGA', Panel: EarningsMockup },
 ]
 
+const INTERVAL = 4000
+
 export default function FeatureTabs() {
-  const [active, setActive] = useState('detect')
-  const ActivePanel = tabs.find((t) => t.id === active)?.Panel
+  const [activeIdx, setActiveIdx] = useState(0)
+  const [dir, setDir] = useState(1) // 1 = forward, -1 = backward
+  const paused = useRef(false)
+  const active = tabs[activeIdx].id
+  const ActivePanel = tabs[activeIdx].Panel
+
+  useEffect(() => {
+    const id = setInterval(() => {
+      if (paused.current) return
+      setDir(1)
+      setActiveIdx(i => (i + 1) % tabs.length)
+    }, INTERVAL)
+    return () => clearInterval(id)
+  }, [])
+
+  function goTo(idx) {
+    setDir(idx > activeIdx ? 1 : -1)
+    setActiveIdx(idx)
+  }
 
   return (
-    <section id="how" className="container-c section py-20 sm:py-28">
+    <section
+      id="how"
+      className="container-c section py-20 sm:py-28"
+      onMouseEnter={() => { paused.current = true }}
+      onMouseLeave={() => { paused.current = false }}
+    >
       {/* Tab bar */}
       <div className="mb-10 flex overflow-x-auto border-b border-line">
-        {tabs.map((tab) => (
+        {tabs.map((tab, i) => (
           <button
             key={tab.id}
-            onClick={() => setActive(tab.id)}
+            onClick={() => goTo(i)}
             className={`relative shrink-0 px-5 py-3.5 text-sm font-medium transition-colors duration-200 ${
-              active === tab.id ? 'text-ink' : 'text-muted hover:text-ink'
+              activeIdx === i ? 'text-ink' : 'text-muted hover:text-ink'
             }`}
           >
             {tab.label}
-            {active === tab.id && (
+            {activeIdx === i && (
               <motion.span
                 layoutId="tab-indicator"
                 className="absolute inset-x-0 bottom-0 h-0.5 bg-accent"
@@ -72,18 +96,21 @@ export default function FeatureTabs() {
         ))}
       </div>
 
-      {/* Panel */}
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={active}
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -8 }}
-          transition={{ duration: 0.35, ease }}
-        >
-          {ActivePanel && <ActivePanel />}
-        </motion.div>
-      </AnimatePresence>
+      {/* Panel — horizontal slide */}
+      <div style={{ overflow: 'hidden' }}>
+        <AnimatePresence mode="wait" custom={dir}>
+          <motion.div
+            key={active}
+            custom={dir}
+            initial={d => ({ opacity: 0, x: d * 60 })}
+            animate={{ opacity: 1, x: 0 }}
+            exit={d => ({ opacity: 0, x: d * -40 })}
+            transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+          >
+            {ActivePanel && <ActivePanel />}
+          </motion.div>
+        </AnimatePresence>
+      </div>
     </section>
   )
 }

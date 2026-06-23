@@ -19,7 +19,10 @@ const GRAPHIK = "'Graphik', -apple-system, BlinkMacSystemFont, 'Helvetica Neue',
 function ScrollToTop() {
   const { pathname } = useLocation();
   useEffect(() => {
-    window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+    // Reset both native scroll and Lenis's internal position
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+    if (window.__lenis) window.__lenis.scrollTo(0, { immediate: true });
   }, [pathname]);
   return null;
 }

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import ShaderWave from './ShaderWave';          // eager — loads with page
 
 function BlueSquare({ style }) {
@@ -9,6 +9,7 @@ function BlueSquare({ style }) {
 /* Each tab shows a pre-rendered still of its shader (public/shaders/*.webp)
    — instant, ~100 KB, no WebGL. */
 
+/* Pre-rendered shader gradient stills — instant load, no WebGL in carousel */
 const tabs = [
   { label: 'Real-time Detection', img: '/shaders/detection.webp' },
   { label: 'Voice Copilot',       img: '/shaders/voice.webp' },
@@ -16,67 +17,115 @@ const tabs = [
   { label: 'Earn $VGA',           img: '/shaders/earn.webp' },
 ];
 
+const INTERVAL = 4000;
+
 function FeatureCarousel() {
   const [active, setActive] = useState(0);
+  const [prev, setPrev] = useState(null);
+  const [sliding, setSliding] = useState(false);
+  const paused = useRef(false);
+  const timeoutRef = useRef(null);
+
+  function goTo(idx) {
+    if (idx === active || sliding) return;
+    setPrev(active);
+    setActive(idx);
+    setSliding(true);
+    clearTimeout(timeoutRef.current);
+    timeoutRef.current = setTimeout(() => setSliding(false), 550);
+  }
+
+  useEffect(() => {
+    const id = setInterval(() => {
+      if (!paused.current) {
+        setActive(i => {
+          const next = (i + 1) % tabs.length;
+          setPrev(i);
+          setSliding(true);
+          clearTimeout(timeoutRef.current);
+          timeoutRef.current = setTimeout(() => setSliding(false), 550);
+          return next;
+        });
+      }
+    }, INTERVAL);
+    return () => { clearInterval(id); clearTimeout(timeoutRef.current); };
+  }, []);
 
   return (
-    <div style={{ borderTop: '1px solid #E7E7E7' }}>
+    <div
+      style={{ borderTop: '2px solid #D4D4D4' }}
+      onMouseEnter={() => { paused.current = true; }}
+      onMouseLeave={() => { paused.current = false; }}
+    >
       {/* Tab strip */}
       <div style={{
-        display: 'flex',
-        borderBottom: '1px solid #E7E7E7',
-        overflowX: 'auto',
-        scrollbarWidth: 'none',
-        background: '#fff',
+        display: 'flex', borderBottom: '2px solid #D4D4D4',
+        overflowX: 'auto', scrollbarWidth: 'none', background: '#fff',
       }}>
         {tabs.map((tab, i) => (
           <button
             key={tab.label}
-            onClick={() => setActive(i)}
+            onClick={() => goTo(i)}
             style={{
-              padding: '18px 32px',
-              fontSize: 15,
+              padding: '18px 32px', fontSize: 15,
               fontWeight: i === active ? 600 : 400,
               color: i === active ? '#000' : '#6B6B6B',
-              borderBottom: i === active ? '3px solid #326BFF' : '3px solid transparent',
-              background: 'none',
-              border: 'none',
-              borderBottom: i === active ? '3px solid #326BFF' : '3px solid transparent',
-              cursor: 'pointer',
-              whiteSpace: 'nowrap',
-              transition: 'color 0.15s',
-              outline: 'none',
+              background: 'none', border: 'none',
+              borderBottom: i === active ? '3px solid #000' : '3px solid transparent',
+              cursor: 'pointer', whiteSpace: 'nowrap',
+              transition: 'color 0.15s, border-color 0.15s', outline: 'none',
             }}
-          >
-            {tab.label}
-          </button>
+          >{tab.label}</button>
         ))}
+
+        {/* Progress bar */}
+        <div style={{ flex: 1, display: 'flex', alignItems: 'center', padding: '0 24px', gap: 8, justifyContent: 'flex-end' }}>
+          {tabs.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => goTo(i)}
+              style={{
+                width: i === active ? 24 : 8, height: 4,
+                background: i === active ? '#000' : '#D4D4D4',
+                border: 'none', cursor: 'pointer', padding: 0,
+                transition: 'width 0.3s, background 0.3s',
+              }}
+            />
+          ))}
+        </div>
       </div>
 
-      {/* Full-width shader still */}
+      {/* Sliding shader stills */}
       <div style={{ position: 'relative', height: 480, overflow: 'hidden', background: '#09090B' }}>
-        {tabs.map((tab, i) => (
-          <img
-            key={tab.label}
-            src={tab.img}
-            alt=""
-            style={{
-              position: 'absolute', inset: 0,
-              width: '100%', height: '100%', objectFit: 'cover',
-              opacity: i === active ? 1 : 0,
-              transition: 'opacity 0.5s ease',
-            }}
-          />
-        ))}
-        {/* Tab label overlay bottom-left */}
-        <div style={{
-          position: 'absolute', bottom: 40, left: 56, zIndex: 2,
-          pointerEvents: 'none',
-        }}>
-          <p style={{ fontSize: 11, fontWeight: 700, color: 'rgba(255,255,255,0.5)', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: 8 }}>
+        {tabs.map((tab, i) => {
+          const isActive = i === active;
+          const isPrev = i === prev && sliding;
+          const show = isActive || isPrev;
+          return (
+            <div
+              key={tab.label}
+              style={{
+                position: 'absolute', inset: 0,
+                transform: isActive
+                  ? 'translateX(0%)'
+                  : isPrev
+                    ? 'translateX(-100%)'
+                    : i < active ? 'translateX(-100%)' : 'translateX(100%)',
+                transition: show ? 'transform 0.55s cubic-bezier(0.22,1,0.36,1)' : 'none',
+                willChange: 'transform',
+              }}
+            >
+              <img src={tab.img} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+            </div>
+          );
+        })}
+
+        {/* Label overlay */}
+        <div style={{ position: 'absolute', bottom: 40, left: 56, zIndex: 2, pointerEvents: 'none' }}>
+          <p style={{ fontSize: 11, fontWeight: 700, color: 'rgba(255,255,255,0.55)', letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: 8 }}>
             {tabs[active].label}
           </p>
-          <div style={{ width: 32, height: 2, background: 'rgba(255,255,255,0.3)', borderRadius: 1 }} />
+          <div style={{ width: 32, height: 2, background: 'rgba(255,255,255,0.3)' }} />
         </div>
       </div>
     </div>

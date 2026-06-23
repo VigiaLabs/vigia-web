@@ -54,7 +54,7 @@ export default function FormPage({
         <div style={{ width: '100%', maxWidth: columns === 2 ? 640 : 460 }}>
           <div style={{ textAlign: 'center', marginBottom: 36 }}>
             {eyebrow && (
-              <p style={{ fontFamily: MONO, fontSize: 12, fontWeight: 500, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#326BFF', margin: '0 0 16px' }}>{eyebrow}</p>
+              <p style={{ fontFamily: MONO, fontSize: 12, fontWeight: 500, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#888', margin: '0 0 16px' }}>{eyebrow}</p>
             )}
             <h1 style={{ fontSize: 'clamp(2rem, 4vw, 2.8rem)', fontWeight: 800, color: '#000', letterSpacing: '-0.03em', lineHeight: 1.08, margin: 0 }}>{title}</h1>
             {subtitle && <p style={{ fontSize: 16, color: '#555', lineHeight: 1.6, margin: '16px auto 0', maxWidth: 440 }}>{subtitle}</p>}

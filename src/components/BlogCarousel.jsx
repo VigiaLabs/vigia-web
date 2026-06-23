@@ -92,7 +92,7 @@ export default function BlogCarousel() {
             style={{
               flex: '0 0 536px', maxWidth: '85vw', height: 440,
               scrollSnapAlign: 'start', position: 'relative',
-              borderRadius: 20, overflow: 'hidden', textDecoration: 'none',
+              borderRadius: 0, overflow: 'hidden', textDecoration: 'none',
               display: 'flex', flexDirection: 'column', justifyContent: 'flex-end',
               background: '#111',
             }}
@@ -107,7 +107,7 @@ export default function BlogCarousel() {
               position: 'absolute', top: 24, left: 24, zIndex: 2,
               background: '#fff', color: '#111', fontFamily: MONO,
               fontSize: 12, letterSpacing: '0.08em', fontWeight: 500,
-              padding: '7px 12px', borderRadius: 7,
+              padding: '7px 12px', borderRadius: 0,
             }}>{p.category}</span>
 
             {/* content */}
@@ -121,7 +121,7 @@ export default function BlogCarousel() {
               <span style={{
                 display: 'inline-flex', alignItems: 'center', gap: 8,
                 background: '#fff', color: '#111', fontSize: 14, fontWeight: 600,
-                padding: '11px 18px', borderRadius: 10,
+                padding: '11px 18px', borderRadius: 0,
               }}>
                 Learn more <Arrow dir="right" />
               </span>
@@ -140,7 +140,7 @@ export default function BlogCarousel() {
               onClick={() => scrollTo(i)}
               aria-label={`Go to slide ${i + 1}`}
               style={{
-                width: i === active ? 26 : 8, height: 8, borderRadius: 4, border: 'none', cursor: 'pointer',
+                width: i === active ? 26 : 8, height: 8, borderRadius: 2, border: 'none', cursor: 'pointer',
                 background: i === active ? '#1A1A1A' : '#C4C4C4', transition: 'width 0.25s, background 0.25s', padding: 0,
               }}
             />
@@ -154,7 +154,7 @@ export default function BlogCarousel() {
               onClick={() => scrollTo(dir === 'left' ? active - 1 : active + 1)}
               aria-label={dir === 'left' ? 'Previous' : 'Next'}
               style={{
-                width: 46, height: 40, borderRadius: 10, border: '1px solid #E2E2E2',
+                width: 46, height: 40, borderRadius: 0, border: '1px solid #E2E2E2',
                 background: '#F7F7F7', color: '#111', cursor: 'pointer',
                 display: 'grid', placeItems: 'center',
               }}

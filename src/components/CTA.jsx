@@ -10,8 +10,18 @@ export default function CTA() {
   }
 
   return (
-    <section style={{ background: '#000', padding: '120px 7%', textAlign: 'center' }}>
-      <div style={{ maxWidth: 640, margin: '0 auto' }}>
+    <section style={{ position: 'relative', background: '#000', padding: '120px 7%', textAlign: 'center', overflow: 'hidden' }}>
+      {/* black/white shader still — wave.webp desaturated */}
+      <img
+        src="/shaders/wave.webp"
+        aria-hidden
+        style={{
+          position: 'absolute', inset: 0, width: '100%', height: '100%',
+          objectFit: 'cover', filter: 'grayscale(1) brightness(0.9)',
+          pointerEvents: 'none', userSelect: 'none',
+        }}
+      />
+      <div style={{ position: 'relative', zIndex: 1, maxWidth: 640, margin: '0 auto' }}>
         <h2 style={{
           fontSize: 'clamp(2rem, 5vw, 3.5rem)',
           fontWeight: 700, lineHeight: 1.1,
